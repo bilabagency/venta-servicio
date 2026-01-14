@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>bi.lab | Business Intelligence & Growth</title>
+    <title>bi.lab | Escala tu Inmobiliaria</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,165 +12,196 @@
     
     <style>
         :root {
-            /* Paleta Oficial bi.lab */
-            --bg-dark: #161517; /* [cite: 6] */
-            --gold: #DFD6B5;    /*  */
-            --violet: #5241B0;  /*  */
-            --magenta: #BC65DE; /* [cite: 11] */
-            --cream: #FDFAF0;   /* [cite: 10] */
-            --font-title: 'Quicksand', sans-serif; /* [cite: 51] */
-            --font-body: 'Archivo', sans-serif;    /* [cite: 53] */
+            --bg-dark: #161517;
+            --gold: #DFD6B5;
+            --violet: #5241B0;
+            --magenta: #BC65DE;
+            --cream: #FDFAF0;
+            --font-title: 'Quicksand', sans-serif;
+            --font-body: 'Archivo', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; background-color: var(--bg-dark); }
-        
         body {
             background-color: var(--bg-dark);
             color: var(--cream);
             font-family: var(--font-body);
             overflow-x: hidden;
-            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- BACKGROUND TECH --- */
+        /* FONDO ANIMADO TECNOLOGICO */
         #neural-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.35;
+            opacity: 0.4;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 480px; /* Ancho optimizado mobile */
+            max-width: 500px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 25px;
         }
 
-        /* Responsive Desktop */
         @media (min-width: 1024px) {
             .container { max-width: 1100px; }
         }
 
-        /* --- SECCIÓN 1: HERO --- */
+        /* SECCION 1: HERO */
         .hero {
-            height: 82vh; /* Altura calculada para el peek del video */
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 35px;
+            padding-top: 30px;
             text-align: center;
         }
 
-        .logo-wrapper { margin-bottom: 50px; }
-        .logo-wrapper img { height: 38px; filter: drop-shadow(0 0 10px rgba(223, 214, 181, 0.2)); }
+        .hero-logo { margin-bottom: 40px; }
+        .hero-logo img { height: 40px; }
 
-        /* Tag Exclusivo Destacado */
         .exclusive-tag {
             display: inline-block;
             background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
-            color: #FFF;
-            padding: 10px 22px;
+            color: white;
+            padding: 10px 24px;
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 25px;
-            box-shadow: 0 0 25px rgba(82, 65, 176, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(82, 65, 176, 0.4);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(82, 65, 176, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(188, 101, 222, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(82, 65, 176, 0.4); }
         }
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.05;
-            margin-bottom: 40px;
+            font-size: 2.6rem;
+            line-height: 1.1;
+            margin-bottom: 35px;
             background: linear-gradient(180deg, #FFF 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* CTA Botón Principal */
         .btn-main {
             background-color: var(--gold);
             color: var(--bg-dark);
-            padding: 20px 32px;
-            border-radius: 16px;
+            padding: 20px;
+            border-radius: 14px;
             font-family: var(--font-title);
             font-weight: 700;
-            font-size: 1.1rem;
             text-decoration: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 12px 35px rgba(223, 214, 181, 0.25);
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
             border: none;
             width: 100%;
-            justify-content: center;
         }
 
-        .btn-main:active { transform: scale(0.96); opacity: 0.9; }
-
-        /* --- SECCIÓN 2: VSL --- */
+        /* SECCION 2: VSL (EL VIDEO SUBE) */
         .vsl-section {
-            padding-bottom: 80px;
-            margin-top: -30px; /* Superposición para el peek */
+            padding-bottom: 60px;
+            position: relative;
+            z-index: 10;
+            margin-top: -120px; /* Video más cerca del Hero */
         }
 
-        /* Contenedor achicado un 15% (72.25% del total original) */
         .vsl-frame {
-            width: 75%; 
+            width: 78%; /* Proporción estética */
             margin: 0 auto 30px;
             aspect-ratio: 9 / 16;
             background: #000;
             border-radius: 24px;
             overflow: hidden;
             border: 2px solid rgba(82, 65, 176, 0.5);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        iframe { width: 100%; height: 100%; border: none; }
+        /* SECCION 3: DOLORES */
+        .pains-section { padding: 60px 0; background: rgba(0,0,0,0.4); }
+        .pain-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .pain-card i { color: var(--magenta); font-size: 1.2rem; }
 
         .urgency-pill {
-            background: rgba(188, 101, 222, 0.08);
-            border: 1px solid rgba(188, 101, 222, 0.3);
-            padding: 14px;
-            border-radius: 12px;
+            background: rgba(188, 101, 222, 0.1);
+            border: 1px solid var(--magenta);
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
             font-weight: 600;
             color: var(--magenta);
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-
-        /* Animación Micro-interacción Icono */
-        .fa-chevron-down {
-            animation: bounce-icon 2s infinite;
+            margin-top: 15px;
             font-size: 0.9rem;
         }
 
-        @keyframes bounce-icon {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(5px); }
-            60% { transform: translateY(3px); }
+        /* CALENDARIO ANIMADO */
+        .calendar-anim {
+            animation: bounce-cal 2s infinite;
+        }
+        @keyframes bounce-cal {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); color: var(--violet); }
         }
 
+        /* MARQUEE LOGOS */
+        .marquee {
+            overflow: hidden;
+            padding: 50px 0;
+            background: #111;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+        }
+        .marquee img { height: 35px; margin: 0 30px; filter: grayscale(1) brightness(2); opacity: 0.6; }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* BOOKING */
+        .booking-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            min-height: 700px;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
 
     <canvas id="neural-canvas"></canvas>
 
-    <header class="hero container">
-        <div class="logo-wrapper">
-            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab logo">
+    <section class="hero container">
+        <div class="hero-logo">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab">
         </div>
         
         <div>
@@ -181,31 +212,82 @@
                 <i class="fa-solid fa-chevron-down"></i>
             </a>
         </div>
-    </header>
+    </section>
 
     <section id="vsl" class="vsl-section container">
         <div class="vsl-frame">
-            <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0&amp;autoplay=1&amp;muted=0&amp;player_id=0&amp;app_id=58479" 
+            <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479&controls=1" 
+                    width="100%" height="100%" frameborder="0" 
                     allow="autoplay; fullscreen; picture-in-picture" 
                     title="bi.lab VSL"></iframe>
         </div>
         
-        <a href="#booking" class="btn-main" style="background-color: var(--gold); border-radius: 12px;">
+        <a href="#booking" class="btn-main">
             Agendá tu auditoría gratuita
-            <i class="fa-solid fa-calendar-check" style="font-size: 1.2rem;"></i>
+            <i class="fa-solid fa-calendar-check calendar-anim"></i>
         </a>
-        
-        <div class="urgency-pill">
-            <i class="fa-solid fa-fire-flame-curved" style="margin-right: 8px;"></i>
-            QUEDAN 5 CUPOS ESTE MES
+        <div class="urgency-pill">🔥 QUEDAN 5 CUPOS ESTE MES</div>
+    </section>
+
+    <section class="pains-section">
+        <div class="container">
+            <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center; color: var(--gold);">¿Te identificás con esto?</h2>
+            
+            <div class="pain-card">
+                <i class="fa-solid fa-circle-right"></i>
+                <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
+            </div>
+            <div class="pain-card">
+                <i class="fa-solid fa-circle-right"></i>
+                <p>Invertís en publicidad pero los leads no sirven.</p>
+            </div>
+            <div class="pain-card">
+                <i class="fa-solid fa-circle-right"></i>
+                <p>Tus referidos se acabaron para captar propiedades.</p>
+            </div>
+            <div class="pain-card">
+                <i class="fa-solid fa-circle-right"></i>
+                <p>Necesitás automatizar procesos para escalar.</p>
+            </div>
+
+            <a href="#booking" class="btn-main" style="margin-top: 30px;">
+                Agendá tu auditoría gratuita
+                <i class="fa-solid fa-calendar-check calendar-anim"></i>
+            </a>
+            <div class="urgency-pill">⚠️ Acción requerida: Auditoría sin costo.</div>
         </div>
     </section>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
+            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
+            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
+            <img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe">
+            <img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano">
+            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
+            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
+            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
+        </div>
+    </div>
+
+    <section id="booking" class="container" style="padding: 80px 25px;">
+        <h2 style="font-family: var(--font-title); text-align: center;">Reserva tu Auditoría 1-a-1</h2>
+        <div class="booking-frame">
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
+                    style="width: 100%; height: 700px; border:none; overflow: hidden;" 
+                    scrolling="no"></iframe>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; opacity: 0.4; font-size: 0.8rem;">
+        &copy; 2026 bi.lab | Business Intelligence & Growth.
+    </footer>
 
     <script>
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 45;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -222,26 +304,26 @@
             update() {
                 this.x += this.vx; this.y += this.vy;
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
         }
 
         function init() {
             resize();
-            for(let i=0; i<particleCount; i++) particles.push(new Particle());
+            for(let i=0; i<40; i++) particles.push(new Particle());
             animate();
         }
 
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = '#5241B033'; /*  */
+            ctx.strokeStyle = '#BC65DE33';
             ctx.lineWidth = 1;
             ctx.beginPath();
             particles.forEach(p => {
                 p.update();
                 particles.forEach(p2 => {
                     let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (d < 115) {
+                    if (d < 120) {
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
                     }
