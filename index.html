@@ -7,13 +7,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --bg-dark: #161517;
-            --bg-card: #1c1c1f;
+            --bg-dark: #0a0a0c;
+            --bg-card: #161517;
             --gold: #DFD6B5;
             --violet: #5241B0;
             --magenta: #BC65DE;
@@ -23,8 +23,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        html { scroll-behavior: smooth; background-color: var(--bg-dark); }
-        
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
             background-color: var(--bg-dark);
             color: var(--cream);
@@ -33,233 +32,200 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- FONDO TECNOLÓGICO 3D PERSPECTIVE --- */
+        /* --- FONDO TECH NEURAL 3D --- */
         #tech-canvas {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.6;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 1240px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 24px;
         }
 
-        @media (min-width: 1024px) {
-            .container { max-width: 1100px; }
-        }
-
-        /* --- SECCIÓN 1: HERO --- */
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 40px;
-            text-align: center;
-        }
-
-        .hero-logo img { height: 42px; margin-bottom: 40px; }
-
-        .exclusive-tag {
+        /* --- COMPONENTES --- */
+        .exclusive-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
-            color: white;
-            padding: 10px 22px;
+            padding: 10px 24px;
+            background: rgba(82, 65, 176, 0.1);
+            border: 1px solid var(--violet);
+            color: var(--magenta);
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 25px;
-            box-shadow: 0 0 20px rgba(82, 65, 176, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 30px rgba(82, 65, 176, 0.2);
         }
 
-        .hero h1 {
-            font-family: var(--font-title);
-            font-size: 2.5rem;
-            line-height: 1.1;
-            margin-bottom: 35px;
-            background: linear-gradient(180deg, #FFF 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-main {
+        .btn-cta {
             background-color: var(--gold);
             color: var(--bg-dark);
-            padding: 20px;
+            padding: 22px 40px;
             border-radius: 14px;
             font-family: var(--font-title);
             font-weight: 700;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(223, 214, 181, 0.2);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .btn-cta:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 50px rgba(223, 214, 181, 0.4); }
+
+        .urgency-tag {
+            font-size: 0.9rem;
+            color: var(--magenta);
+            font-weight: 600;
+            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
-            transition: 0.3s;
+            gap: 10px;
         }
 
-        /* --- SECCIÓN 2: VSL --- */
+        /* --- SECCIÓN 1: HERO --- */
+        .hero {
+            padding-top: 60px;
+            text-align: center;
+            min-height: 70vh;
+        }
+        .hero-logo img { height: 50px; margin-bottom: 50px; }
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 2.6rem;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, #FFF 30%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 { font-size: 4.8rem; max-width: 1000px; margin: 0 auto 50px; }
+            .hero { min-height: 60vh; padding-top: 80px; }
+        }
+
+        /* --- SECCIÓN 2: VSL ADAPTATIVO --- */
         .vsl-section {
-            padding-bottom: 60px;
-            margin-top: -100px; 
-            position: relative;
+            padding-bottom: 100px;
+            margin-top: -100px; /* Peek effect en mobile */
             z-index: 10;
+            position: relative;
         }
 
-        .vsl-frame {
-            width: 82%;
-            margin: 0 auto 30px;
-            aspect-ratio: 9 / 16;
-            background: #000;
+        .vsl-container {
+            margin: 0 auto;
             border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(82, 65, 176, 0.4);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        }
+
+        .vsl-frame-mobile { width: 85%; aspect-ratio: 9/16; display: block; margin: 0 auto; }
+        .vsl-frame-desktop { width: 100%; max-width: 1050px; aspect-ratio: 16/9; display: none; }
+
+        @media (min-width: 1024px) {
+            .vsl-frame-mobile { display: none; }
+            .vsl-frame-desktop { display: block; }
+            .vsl-section { margin-top: -180px; }
         }
 
         iframe { width: 100%; height: 100%; border: none; }
 
         /* --- SECCIÓN 3: DOLORES --- */
-        .pains-section { padding: 60px 0; }
+        .pains-section { padding: 100px 0; background: rgba(10, 10, 12, 0.6); backdrop-filter: blur(10px); }
+        .pains-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 60px; }
+
+        @media (min-width: 1024px) {
+            .pains-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+
         .pain-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 22px;
-            border-radius: 18px;
-            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
             display: flex;
-            gap: 15px;
             align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .pain-card i { color: var(--magenta); font-size: 1.2rem; }
-
-        /* --- SECCIÓN 4: LOGOS --- */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 40px 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: scroll 40s linear infinite;
-        }
-
-        .logo-card-slide {
-            width: 160px; height: 80px; margin: 0 10px;
-            background: #fff; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            padding: 12px; flex-shrink: 0;
-        }
-        .logo-card-slide.dark { background: #2C2C31; border: 1px solid rgba(255,255,255,0.1); }
-        .logo-card-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* --- SECCIÓN NUEVA: QUÉ TE LLEVAS (SLIDER) --- */
-        .benefits-section { padding: 80px 0; }
-        .benefits-section h2 { 
-            font-family: var(--font-title); 
-            font-size: 1.8rem; 
-            margin-bottom: 30px; 
-            color: var(--gold); 
-            line-height: 1.2;
-        }
-
-        .benefits-slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
             gap: 20px;
-            padding: 10px 0 30px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+            transition: 0.3s;
         }
-        .benefits-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .pain-card:hover { border-color: var(--violet); background: rgba(82, 65, 176, 0.05); }
+        .pain-card i { color: var(--gold); font-size: 1.4rem; }
 
-        .benefit-card {
-            min-width: 85%; /* Peek effect */
-            scroll-snap-align: center;
-            background: linear-gradient(145deg, rgba(82, 65, 176, 0.15) 0%, rgba(26, 26, 30, 0.4) 100%);
-            border: 1px solid rgba(188, 101, 222, 0.3);
-            padding: 40px 30px;
-            border-radius: 24px;
-            position: relative;
-            backdrop-filter: blur(15px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 300px;
+        /* --- SECCIÓN 4: LOGOS MARQUEE --- */
+        .marquee-section { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .logo-card-slide {
+            width: 220px; height: 110px; margin: 0 20px;
+            background: #fff; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            padding: 25px; flex-shrink: 0;
         }
+        .logo-card-slide.dark { background: #1c1c1f; border: 1px solid rgba(255,255,255,0.1); }
+        .logo-card-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .benefit-number {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-family: var(--font-title);
-            font-size: 4rem;
-            font-weight: 700;
-            opacity: 0.15;
-            background: linear-gradient(180deg, var(--magenta), transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* --- SECCIÓN 6: AUDITORÍA (SLIDER MOBILE / GRID DESKTOP) --- */
+        .audit-section { padding: 120px 0; }
+        .audit-slider {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px;
+            padding: 40px 0; scrollbar-width: none;
         }
+        .audit-slider::-webkit-scrollbar { display: none; }
 
-        .benefit-card h3 {
-            font-family: var(--font-title);
-            color: var(--gold);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+        .audit-card {
+            min-width: 85%; scroll-snap-align: center;
+            background: linear-gradient(145deg, rgba(82, 65, 176, 0.1) 0%, rgba(10, 10, 12, 0.8) 100%);
+            border: 1px solid rgba(188, 101, 222, 0.2);
+            padding: 50px 40px; border-radius: 30px; position: relative;
+            min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end;
+            backdrop-filter: blur(20px);
         }
 
-        .benefit-card p {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--cream);
-            opacity: 0.9;
+        .audit-number {
+            position: absolute; top: 40px; right: 40px;
+            font-size: 6rem; font-weight: 700; opacity: 0.1;
+            font-family: var(--font-title); color: var(--magenta);
+        }
+
+        .audit-card h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.8rem; margin-bottom: 20px; }
+        .audit-card p { font-size: 1.1rem; line-height: 1.6; color: var(--text-grey); }
+
+        @media (min-width: 1024px) {
+            .audit-slider { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; gap: 40px; }
+            .audit-card { min-width: auto; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+            .audit-card:hover { transform: translateY(-15px); border-color: var(--magenta); box-shadow: 0 30px 60px rgba(188, 101, 222, 0.15); }
         }
 
         /* --- SECCIÓN 7: BOOKING --- */
-        .booking-section { padding: 60px 0; }
-        .booking-frame {
-            border-radius: 24px;
-            overflow: hidden;
-            background: white;
-            min-height: 750px;
+        .booking-section { padding: 120px 0; }
+        .booking-container {
+            max-width: 1000px; margin: 0 auto;
+            border-radius: 40px; overflow: hidden;
+            background: #fff; box-shadow: 0 60px 120px rgba(0,0,0,0.6);
+            min-height: 800px;
         }
 
-        .urgency-pill {
-            background: rgba(188, 101, 222, 0.1);
-            border: 1px solid var(--magenta);
-            padding: 14px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 700;
-            color: var(--magenta);
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .calendar-icon { animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-
+        .calendar-icon { animation: cal-bounce 2s infinite; }
+        @keyframes cal-bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
     </style>
 </head>
 <body>
@@ -270,184 +236,133 @@
         <div class="hero-logo">
             <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab">
         </div>
-        
         <div>
-            <div class="exclusive-tag">Solo para inmobiliarias y agentes</div>
-            <h1>Escalá en ventas y captaciones en 14 semanas.</h1>
-            <a href="#vsl" class="btn-main">
-                Mirá cómo lo hacemos 
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
+            <span class="exclusive-badge">Solo para inmobiliarias y agentes</span>
+            <h1>Escalá en ventas y captaciones de propiedades en 14 semanas.</h1>
+            <a href="#vsl" class="btn-cta">Mirá cómo lo hacemos <i class="fa-solid fa-chevron-down"></i></a>
         </div>
     </section>
 
     <section id="vsl" class="vsl-section container">
-        <div class="vsl-frame">
-            <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479&controls=1" 
-                    width="100%" height="100%" frameborder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture" 
-                    title="bi.lab VSL"></iframe>
+        <div class="vsl-container vsl-frame-mobile">
+            <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=0&controls=1&badge=0" allow="autoplay; fullscreen"></iframe>
+        </div>
+        <div class="vsl-container vsl-frame-desktop">
+            <iframe src="https://player.vimeo.com/video/1147384020?autoplay=1&muted=0&controls=1&badge=0" allow="autoplay; fullscreen"></iframe>
         </div>
         
-        <a href="#booking" class="btn-main">
-            Agendá tu auditoría gratuita
-            <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
-        </a>
-        <div class="urgency-pill">⚠️ QUEDAN SOLO 5 CUPOS ESTE MES</div>
-    </section>
-
-    <section class="pains-section container">
-        <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center; color: var(--gold);">¿Te identificás con esto?</h2>
-        
-        <div class="pain-card">
-            <i class="fa-solid fa-bolt-lightning"></i>
-            <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
-        </div>
-        <div class="pain-card">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <p>Invertís en publicidad pero los leads no sirven.</p>
-        </div>
-        <div class="pain-card">
-            <i class="fa-solid fa-users-slash"></i>
-            <p>Tus referidos se acabaron para captar propiedades.</p>
-        </div>
-        <div class="pain-card">
-            <i class="fa-solid fa-microchip"></i>
-            <p>Necesitás automatizar procesos para escalar.</p>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#booking" class="btn-cta">Agendá tu auditoría gratuita <i class="fa-solid fa-calendar-check calendar-icon"></i></a>
+            <div class="urgency-tag"><i class="fa-solid fa-fire-flame-curved"></i> QUEDAN SOLO 5 CUPOS ESTE MES</div>
         </div>
     </section>
 
-    <section class="marquee-container">
+    <section class="pains-section">
+        <div class="container">
+            <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.5rem; color: var(--gold);">¿Te identificás con estos dolores?</h2>
+            <div class="pains-grid">
+                <div class="pain-card"><i class="fa-solid fa-user-gear"></i> <p>Te ocupás del marketing y quisieras enfocarte solo en la venta.</p></div>
+                <div class="pain-card"><i class="fa-solid fa-filter-circle-xmark"></i> <p>Invertís en publicidad pero los leads no sirven para nada.</p></div>
+                <div class="pain-card"><i class="fa-solid fa-address-book"></i> <p>Tus referidos se fueron acabando para captar propiedades.</p></div>
+                <div class="pain-card"><i class="fa-solid fa-robot"></i> <p>Necesitás automatizar procesos para escalar tu negocio.</p></div>
+                <div class="pain-card"><i class="fa-solid fa-microchip"></i> <p>Necesitás un socio tecnológico para accionar tu base de datos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
         <div class="marquee-track">
             <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
             <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
             <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
-            <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
             <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
-            <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
-            
+            <div class="logo-card-slide dark"><img src="https://www.zipcode.com.ar/assets/images/zipcode-logo-dark.svg" alt="Zipcode"></div>
+            <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
             <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
             <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
             <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
-            <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
-            <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
-            <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
         </div>
     </section>
 
-    <section class="benefits-section container">
-        <h2>Qué te llevas en tu auditoría gratuita:</h2>
-        
-        <div class="benefits-slider">
-            <div class="benefit-card">
-                <div class="benefit-number">01</div>
-                <h3>Diagnóstico Inmobiliario</h3>
-                <p>Analizamos a fondo el marketing que estás haciendo hoy en tu negocio inmobiliario para detectar fugas de dinero.</p>
+    <section class="audit-section container">
+        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.5rem; margin-bottom: 60px;">Qué te llevas en tu <span style="color:var(--gold)">auditoría gratuita:</span></h2>
+        <div class="audit-slider">
+            <div class="audit-card">
+                <div class="audit-number">01</div>
+                <h3>Diagnóstico del Marketing</h3>
+                <p>Analizamos a fondo lo que estás haciendo hoy en tu negocio inmobiliario para encontrar fallas críticas.</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-number">02</div>
-                <h3>Accionables Inmediatos</h3>
-                <p>Te entregamos accionables claros y precisos para que empieces a solucionar tus problemas de ventas hoy mismo.</p>
+            <div class="audit-card">
+                <div class="audit-number">02</div>
+                <h3>Accionables Claros</h3>
+                <p>Hoja de ruta precisa con los pasos a seguir para empezar a captar y vender hoy mismo.</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-number">03</div>
+            <div class="audit-card">
+                <div class="audit-number">03</div>
                 <h3>Nuestro Framework</h3>
-                <p>Conocerás la visión de nuestro framework de trabajo con el que escalamos a más de 20 empresas del sector en 2025.</p>
+                <p>Visión interna del sistema tecnológico con el que escalamos +20 empresas del sector en 2025.</p>
             </div>
         </div>
-
-        <a href="#booking" class="btn-main" style="margin-top: 20px;">
-            Reservar mi auditoría
-            <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
-        </a>
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#booking" class="btn-cta">Reservar mi lugar ahora <i class="fa-solid fa-calendar-check calendar-icon"></i></a>
+        </div>
     </section>
 
     <section id="booking" class="booking-section container">
-        <h2 style="font-family: var(--font-title); text-align: center; margin-bottom: 40px;">Tu crecimiento empieza aquí</h2>
-        <div class="booking-frame">
-            <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
-                    style="width: 100%; height: 750px; border:none; overflow: hidden;" 
-                    scrolling="no"></iframe>
+        <div class="booking-container">
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" style="width: 100%; height: 850px; border:none; overflow: hidden;" scrolling="no"></iframe>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px; opacity: 0.4; font-size: 0.8rem;">
-        &copy; 2026 bi.lab | Business Intelligence & Growth.
+    <footer style="text-align: center; padding: 60px; opacity: 0.3; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        &copy; 2026 bi.lab | Business Intelligence & Growth. Todos los derechos reservados.
     </footer>
 
     <script>
         const canvas = document.getElementById('tech-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 80;
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
 
         class Particle {
             constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = (Math.random() - 0.5) * canvas.width * 2;
-                this.y = (Math.random() - 0.5) * canvas.height * 2;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
                 this.z = Math.random() * canvas.width;
-                this.pz = this.z;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
             }
             update() {
-                this.z -= 2.5; // Flujo constante
-                if (this.z <= 1) {
-                    this.reset();
-                    this.pz = this.z;
-                }
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
             draw() {
-                let sx = (this.x / this.z) * canvas.width/2 + canvas.width/2;
-                let sy = (this.y / this.z) * canvas.height/2 + canvas.height/2;
-                let r = (1 - this.z / canvas.width) * 3;
-
-                ctx.fillStyle = '#BC65DEAA';
-                ctx.beginPath();
-                ctx.arc(sx, sy, r, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Conexiones Tech
-                ctx.strokeStyle = '#5241B011';
-                ctx.lineWidth = 0.5;
-                for (let i = 0; i < 3; i++) {
-                    let p2 = particles[Math.floor(Math.random() * particles.length)];
-                    let s2x = (p2.x / p2.z) * canvas.width/2 + canvas.width/2;
-                    let s2y = (p2.y / p2.z) * canvas.height/2 + canvas.height/2;
-                    if (Math.hypot(sx - s2x, sy - s2y) < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(sx, sy);
-                        ctx.lineTo(s2x, s2y);
-                        ctx.stroke();
-                    }
-                }
+                let sx = this.x; let sy = this.y;
+                ctx.fillStyle = 'rgba(188, 101, 222, 0.4)';
+                ctx.beginPath(); ctx.arc(sx, sy, 1.5, 0, Math.PI * 2); ctx.fill();
             }
         }
-
-        function init() {
-            resize();
-            for(let i=0; i<particleCount; i++) particles.push(new Particle());
-            animate();
-        }
+        for(let i=0; i<80; i++) particles.push(new Particle());
 
         function animate() {
-            ctx.fillStyle = 'rgba(22, 21, 23, 0.15)'; // Trail effect
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(82, 65, 176, 0.15)';
+            ctx.lineWidth = 1;
+            particles.forEach((p, i) => {
+                p.update(); p.draw();
+                for(let j=i+1; j<particles.length; j++) {
+                    let d = Math.hypot(p.x - particles[j].x, p.y - particles[j].y);
+                    if(d < 180) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                    }
+                }
             });
             requestAnimationFrame(animate);
         }
-
-        window.addEventListener('resize', resize);
-        init();
+        animate();
     </script>
 </body>
 </html>
