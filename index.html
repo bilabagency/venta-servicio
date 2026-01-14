@@ -14,17 +14,15 @@
         :root {
             --bg-dark: #161517; /* Black Manual [cite: 6] */
             --gold: #DFD6B5;    /* Gold Manual [cite: 4] */
-            --violet: #5241B0;  /* Violet Manual [cite: 8] */
+            --violet: #5241B0;  /* Violet Manual  */
             --magenta: #BC65DE; /* Magenta Manual [cite: 11] */
             --cream: #FDFAF0;   /* Cream Manual [cite: 10] */
-            --font-title: 'Quicksand', sans-serif; /* [cite: 51] */
-            --font-body: 'Archivo', sans-serif;   /* [cite: 53] */
+            --font-title: 'Quicksand', sans-serif; /* Primary  */
+            --font-body: 'Archivo', sans-serif;   /* Secondary [cite: 53] */
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        
         body {
             background-color: var(--bg-dark);
             color: var(--cream);
@@ -33,30 +31,50 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- FONDO NEURAL ANIMADO --- */
+        /* --- FONDO NEURAL --- */
         #neural-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.25;
+            opacity: 0.3;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 500px; /* Optimizado para Mobile */
+            max-width: 500px; /* Mobile focused */
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 20px;
         }
 
-        /* Desktop Adjustment */
         @media (min-width: 1024px) {
             .container { max-width: 1100px; }
         }
 
-        /* --- COMPONENTES UI --- */
+        /* --- SECCIÓN 1: HERO (AJUSTADA) --- */
+        .hero {
+            height: 85vh; /* Reducido para mostrar el video abajo */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Elementos más arriba */
+            padding-top: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-logo { margin-bottom: 30px; }
+
+        .hero-pain {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: block;
+            padding: 0 10px;
+        }
+
         .badge-step {
-            background: linear-gradient(90deg, var(--magenta), var(--violet));
+            background: var(--violet);
             color: white;
             padding: 6px 16px;
             border-radius: 50px;
@@ -67,11 +85,18 @@
             text-transform: uppercase;
         }
 
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 2.3rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--cream);
+        }
+
         .btn-cta {
             background: var(--gold);
             color: var(--bg-dark);
-            width: 100%;
-            padding: 20px;
+            padding: 18px 25px;
             border-radius: 12px;
             font-family: var(--font-title);
             font-weight: 700;
@@ -80,29 +105,38 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
-            transition: 0.3s;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2);
             border: none;
             cursor: pointer;
         }
 
-        /* Animación Calendario en el Botón */
-        .calendar-icon {
-            position: relative;
-            width: 24px; height: 24px;
+        /* --- SECCIÓN 2: VSL (ACHICADO 15%) --- */
+        .vsl-section { 
+            padding-bottom: 60px; 
+            margin-top: -20px; /* Sube para asomarse */
         }
-        .calendar-icon::after {
-            content: '\f133'; /* FontAwesome Calendar */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
+
+        /* Contenedor del video achicado un 15% proporcionalmente */
+        .vsl-wrapper {
+            width: 85%; /* 15% menos que el 100% previo */
+            margin: 0 auto 25px;
+            aspect-ratio: 9 / 16;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--violet);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        /* --- ANIMACIONES --- */
+        .calendar-icon {
             animation: pulse-cal 1.5s infinite;
-            display: block;
         }
         @keyframes pulse-cal {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); color: var(--violet); }
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
 
@@ -117,258 +151,43 @@
             color: var(--magenta);
             font-weight: 600;
         }
-
-        /* --- SECCIÓN 1: HERO (FUSIÓN DOLOR) --- */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-top: 60px;
-            text-align: center;
-        }
-
-        .hero-pain-wrapper {
-            position: relative;
-            margin-bottom: 30px;
-            padding: 40px 20px;
-            background: radial-gradient(circle, rgba(82, 65, 176, 0.2) 0%, transparent 70%);
-        }
-
-        .pain-phrase {
-            font-size: 1.2rem;
-            color: var(--gold);
-            font-style: italic;
-            opacity: 0.8;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .hero h1 {
-            font-family: var(--font-title);
-            font-size: 2.4rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            background: linear-gradient(180deg, #FFF 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* --- SECCIÓN 2: VSL VERTICAL --- */
-        .vsl-section { padding-bottom: 60px; }
-        .vsl-wrapper {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(82, 65, 176, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 25px;
-        }
-
-        /* --- SECCIÓN 3: DOLORES --- */
-        .pain-points { padding: 80px 0; background: rgba(0,0,0,0.3); }
-        .pain-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .pain-card i { color: var(--magenta); font-size: 1.2rem; }
-
-        /* --- SECCIÓN 4: LOGOS MARQUEE --- */
-        .marquee {
-            overflow: hidden;
-            padding: 40px 0;
-            background: #111;
-            white-space: nowrap;
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
-        }
-        .marquee img {
-            height: 35px;
-            margin: 0 30px;
-            filter: grayscale(1) brightness(2);
-            opacity: 0.6;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* --- SECCIÓN 5: CASOS SWIPE --- */
-        .cases-swipe {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 20px 0 40px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .case-item {
-            min-width: 80%; /* Efecto Peek */
-            scroll-snap-align: center;
-            aspect-ratio: 9 / 16;
-            background: #222;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        /* --- SECCIÓN 7: CALENDARIO GHL --- */
-        .calendar-section { padding: 80px 0; text-align: center; }
-        .booking-frame {
-            border-radius: 15px;
-            overflow: hidden;
-            background: white;
-            min-height: 600px;
-        }
-
     </style>
 </head>
 <body>
 
     <canvas id="neural-canvas"></canvas>
 
-    <div class="container" style="padding: 20px 0; text-align: center;">
-        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab" height="35">
-    </div>
-
     <section class="hero container">
-        <div class="hero-pain-wrapper">
-            <span class="pain-phrase">"Otro mes con portales inmobiliarios caros y leads basura..."</span>
-            <div class="badge-step">Solo para inmobiliarias y agentes</div>
+        <div class="hero-logo">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab" height="35">
+        </div>
+        
+        <span class="hero-pain">"Otro mes con portales inmobiliarios caros y leads basura..."</span>
+        
+        <div>
+            <span class="badge-step">Solo para inmobiliarias y agentes</span>
             <h1>Escalá en ventas y captaciones en 14 semanas.</h1>
             <a href="#vsl" class="btn-cta">Mirá cómo lo hacemos <i class="fa-solid fa-arrow-down"></i></a>
         </div>
-        <div style="opacity: 0.5; font-size: 0.8rem;">SCROLLEA PARA VER EL MÉTODO ↓</div>
     </section>
 
     <section id="vsl" class="vsl-section container">
-        <div class="badge-step">Paso 1: Mira este video</div>
         <div class="vsl-wrapper">
-            <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=0" 
+            <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0&amp;autoplay=1&amp;muted=0#t=0s" 
                     width="100%" height="100%" frameborder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
                     title="bi.lab VSL"></iframe>
         </div>
         
         <a href="#booking" class="btn-cta">
             Agendá tu auditoría gratuita
-            <div class="calendar-icon"></div>
+            <i class="fa-solid fa-calendar-days calendar-icon"></i>
         </a>
-        <div class="urgency-box">
-            🔥 QUEDAN SÓLO 5 CUPOS DISPONIBLES EN ENERO
-        </div>
-    </section>
-
-    <section class="pain-points">
-        <div class="container">
-            <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center;">¿Te identificás con esto?</h2>
-            
-            <div class="pain-card">
-                <i class="fa-solid fa-bolt-lightning"></i>
-                <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <p>Invertís en publicidad pero los leads no sirven.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-users-slash"></i>
-                <p>Tus referidos se fueron acabando para captar propiedades.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-robot"></i>
-                <p>Necesitás automatizar procesos para escalar tu negocio.</p>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <a href="#booking" class="btn-cta">
-                    Quiero solucionar esto ahora
-                    <div class="calendar-icon"></div>
-                </a>
-                <div class="urgency-box">Últimos cupos para auditoría gratuita</div>
-            </div>
-        </div>
-    </section>
-
-    <div class="marquee">
-        <div class="marquee-content">
-            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
-            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
-            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
-            <img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe">
-            <img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano">
-            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
-            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
-            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
-        </div>
-    </div>
-
-    <section class="container" style="padding: 80px 25px;">
-        <h2 style="font-family: var(--font-title); margin-bottom: 20px;">Casos de Éxito</h2>
-        <p style="opacity: 0.7; margin-bottom: 20px;">Deslizá para ver los resultados ↓</p>
         
-        <div class="cases-swipe">
-            <div class="case-item">
-                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-            <div class="case-item">
-                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-            <div class="case-item">
-                <div style="height: 100%; display: flex; align-items: center; justify-content: center; background: var(--bg-card);">
-                    <p>Más casos...</p>
-                </div>
-            </div>
-        </div>
-
-        <div style="margin-top: 30px;">
-            <a href="#booking" class="btn-cta">
-                Agendá tu auditoría gratuita
-                <div class="calendar-icon"></div>
-            </a>
-            <div class="urgency-box">Quedan 5 cupos para el framework de 14 semanas</div>
+        <div class="urgency-box">
+            🔥 QUEDAN SÓLO 5 CUPOS DISPONIBLES ESTE MES
         </div>
     </section>
-
-    <section class="container" style="padding-bottom: 80px;">
-        <div style="background: var(--violet); padding: 30px; border-radius: 20px;">
-            <h2 style="color: white; margin-bottom: 25px;">¿Qué te llevás en la auditoría?</h2>
-            <ul style="list-style: none;">
-                <li style="margin-bottom: 20px; display: flex; gap: 10px;">
-                    <b style="color: var(--gold);">1.</b> Diagnóstico del marketing que hacés hoy en tu negocio.
-                </li>
-                <li style="margin-bottom: 20px; display: flex; gap: 10px;">
-                    <b style="color: var(--gold);">2.</b> Accionables claros para empezar a solucionar problemas hoy mismo.
-                </li>
-                <li style="display: flex; gap: 10px;">
-                    <b style="color: var(--gold);">3.</b> Visión de nuestro framework que escaló +20 inmobiliarias en 2025.
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="booking" class="calendar-section container">
-        <div class="badge-step">Paso final: Elige día y hora</div>
-        <h2 style="margin-bottom: 30px;">Reserva tu Auditoría 1-a-1</h2>
-        <div class="booking-frame">
-            <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
-                    style="width: 100%; height: 700px; border:none; overflow: hidden;" 
-                    scrolling="no"></iframe>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
-        &copy; 2026 bi.lab | Business Intelligence & Growth. Todos los derechos reservados.
-    </footer>
 
     <script>
         const canvas = document.getElementById('neural-canvas');
@@ -384,8 +203,8 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
@@ -396,19 +215,20 @@
 
         function init() {
             resize();
-            for(let i=0; i<40; i++) particles.push(new Particle());
+            for(let i=0; i<45; i++) particles.push(new Particle());
             animate();
         }
 
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = '#5241B044';
+            ctx.strokeStyle = '#5241B033';
+            ctx.lineWidth = 1;
             ctx.beginPath();
             particles.forEach(p => {
                 p.update();
                 particles.forEach(p2 => {
                     let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (d < 120) {
+                    if (d < 110) {
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
                     }
