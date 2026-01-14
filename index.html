@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>bi.lab | Escala tu Inmobiliaria</title>
+    <title>bi.lab | Business Intelligence & Growth</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,180 +12,192 @@
     
     <style>
         :root {
-            --bg-dark: #161517; /* Black Manual [cite: 6] */
-            --gold: #DFD6B5;    /* Gold Manual [cite: 4] */
-            --violet: #5241B0;  /* Violet Manual  */
-            --magenta: #BC65DE; /* Magenta Manual [cite: 11] */
-            --cream: #FDFAF0;   /* Cream Manual [cite: 10] */
-            --font-title: 'Quicksand', sans-serif; /* Primary  */
-            --font-body: 'Archivo', sans-serif;   /* Secondary [cite: 53] */
+            /* Paleta Oficial bi.lab */
+            --bg-dark: #161517; /* [cite: 6] */
+            --gold: #DFD6B5;    /*  */
+            --violet: #5241B0;  /*  */
+            --magenta: #BC65DE; /* [cite: 11] */
+            --cream: #FDFAF0;   /* [cite: 10] */
+            --font-title: 'Quicksand', sans-serif; /* [cite: 51] */
+            --font-body: 'Archivo', sans-serif;    /* [cite: 53] */
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        html { scroll-behavior: smooth; background-color: var(--bg-dark); }
+        
         body {
             background-color: var(--bg-dark);
             color: var(--cream);
             font-family: var(--font-body);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.4;
         }
 
-        /* --- FONDO NEURAL --- */
+        /* --- BACKGROUND TECH --- */
         #neural-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.35;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 500px; /* Mobile focused */
+            max-width: 480px; /* Ancho optimizado mobile */
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
+        /* Responsive Desktop */
         @media (min-width: 1024px) {
             .container { max-width: 1100px; }
         }
 
-        /* --- SECCIÓN 1: HERO (AJUSTADA) --- */
+        /* --- SECCIÓN 1: HERO --- */
         .hero {
-            height: 85vh; /* Reducido para mostrar el video abajo */
+            height: 82vh; /* Altura calculada para el peek del video */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Elementos más arriba */
-            padding-top: 40px;
+            justify-content: flex-start;
+            padding-top: 35px;
             text-align: center;
-            position: relative;
         }
 
-        .hero-logo { margin-bottom: 30px; }
+        .logo-wrapper { margin-bottom: 50px; }
+        .logo-wrapper img { height: 38px; filter: drop-shadow(0 0 10px rgba(223, 214, 181, 0.2)); }
 
-        .hero-pain {
-            font-size: 1.1rem;
-            color: var(--gold);
-            font-style: italic;
-            margin-bottom: 15px;
-            display: block;
-            padding: 0 10px;
-        }
-
-        .badge-step {
-            background: var(--violet);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 50px;
+        /* Tag Exclusivo Destacado */
+        .exclusive-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
+            color: #FFF;
+            padding: 10px 22px;
+            border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 700;
-            display: inline-block;
-            margin-bottom: 15px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px rgba(82, 65, 176, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: 2.3rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--cream);
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, #FFF 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .btn-cta {
-            background: var(--gold);
+        /* CTA Botón Principal */
+        .btn-main {
+            background-color: var(--gold);
             color: var(--bg-dark);
-            padding: 18px 25px;
-            border-radius: 12px;
+            padding: 20px 32px;
+            border-radius: 16px;
             font-family: var(--font-title);
             font-weight: 700;
-            text-transform: uppercase;
+            font-size: 1.1rem;
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2);
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 35px rgba(223, 214, 181, 0.25);
             border: none;
-            cursor: pointer;
+            width: 100%;
+            justify-content: center;
         }
 
-        /* --- SECCIÓN 2: VSL (ACHICADO 15%) --- */
-        .vsl-section { 
-            padding-bottom: 60px; 
-            margin-top: -20px; /* Sube para asomarse */
+        .btn-main:active { transform: scale(0.96); opacity: 0.9; }
+
+        /* --- SECCIÓN 2: VSL --- */
+        .vsl-section {
+            padding-bottom: 80px;
+            margin-top: -30px; /* Superposición para el peek */
         }
 
-        /* Contenedor del video achicado un 15% proporcionalmente */
-        .vsl-wrapper {
-            width: 85%; /* 15% menos que el 100% previo */
-            margin: 0 auto 25px;
+        /* Contenedor achicado un 15% (72.25% del total original) */
+        .vsl-frame {
+            width: 75%; 
+            margin: 0 auto 30px;
             aspect-ratio: 9 / 16;
             background: #000;
-            border-radius: 15px;
+            border-radius: 24px;
             overflow: hidden;
-            border: 2px solid var(--violet);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid rgba(82, 65, 176, 0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+            position: relative;
         }
 
-        /* --- ANIMACIONES --- */
-        .calendar-icon {
-            animation: pulse-cal 1.5s infinite;
-        }
-        @keyframes pulse-cal {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        .urgency-box {
-            background: rgba(188, 101, 222, 0.1);
-            border: 1px dashed var(--magenta);
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
+        .urgency-pill {
+            background: rgba(188, 101, 222, 0.08);
+            border: 1px solid rgba(188, 101, 222, 0.3);
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
-            font-size: 0.9rem;
-            color: var(--magenta);
             font-weight: 600;
+            color: var(--magenta);
+            font-size: 0.9rem;
+            margin-top: 20px;
         }
+
+        /* Animación Micro-interacción Icono */
+        .fa-chevron-down {
+            animation: bounce-icon 2s infinite;
+            font-size: 0.9rem;
+        }
+
+        @keyframes bounce-icon {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(5px); }
+            60% { transform: translateY(3px); }
+        }
+
     </style>
 </head>
 <body>
 
     <canvas id="neural-canvas"></canvas>
 
-    <section class="hero container">
-        <div class="hero-logo">
-            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab" height="35">
+    <header class="hero container">
+        <div class="logo-wrapper">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab logo">
         </div>
-        
-        <span class="hero-pain">"Otro mes con portales inmobiliarios caros y leads basura..."</span>
         
         <div>
-            <span class="badge-step">Solo para inmobiliarias y agentes</span>
+            <div class="exclusive-tag">Solo para inmobiliarias y agentes</div>
             <h1>Escalá en ventas y captaciones en 14 semanas.</h1>
-            <a href="#vsl" class="btn-cta">Mirá cómo lo hacemos <i class="fa-solid fa-arrow-down"></i></a>
+            <a href="#vsl" class="btn-main">
+                Mirá cómo lo hacemos 
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
         </div>
-    </section>
+    </header>
 
     <section id="vsl" class="vsl-section container">
-        <div class="vsl-wrapper">
-            <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0&amp;autoplay=1&amp;muted=0#t=0s" 
-                    width="100%" height="100%" frameborder="0" 
+        <div class="vsl-frame">
+            <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0&amp;autoplay=1&amp;muted=0&amp;player_id=0&amp;app_id=58479" 
                     allow="autoplay; fullscreen; picture-in-picture" 
                     title="bi.lab VSL"></iframe>
         </div>
         
-        <a href="#booking" class="btn-cta">
+        <a href="#booking" class="btn-main" style="background-color: var(--gold); border-radius: 12px;">
             Agendá tu auditoría gratuita
-            <i class="fa-solid fa-calendar-days calendar-icon"></i>
+            <i class="fa-solid fa-calendar-check" style="font-size: 1.2rem;"></i>
         </a>
         
-        <div class="urgency-box">
-            🔥 QUEDAN SÓLO 5 CUPOS DISPONIBLES ESTE MES
+        <div class="urgency-pill">
+            <i class="fa-solid fa-fire-flame-curved" style="margin-right: 8px;"></i>
+            QUEDAN 5 CUPOS ESTE MES
         </div>
     </section>
 
@@ -193,6 +205,7 @@
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
+        const particleCount = 45;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -209,26 +222,26 @@
             update() {
                 this.x += this.vx; this.y += this.vy;
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
             }
         }
 
         function init() {
             resize();
-            for(let i=0; i<45; i++) particles.push(new Particle());
+            for(let i=0; i<particleCount; i++) particles.push(new Particle());
             animate();
         }
 
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = '#5241B033';
+            ctx.strokeStyle = '#5241B033'; /*  */
             ctx.lineWidth = 1;
             ctx.beginPath();
             particles.forEach(p => {
                 p.update();
                 particles.forEach(p2 => {
                     let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (d < 110) {
+                    if (d < 115) {
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
                     }
