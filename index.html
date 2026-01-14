@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>bi.lab | Business Intelligence & Growth</title>
-    
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '875787031763008');
+    fbq('track', 'PageView');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
@@ -38,12 +50,12 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            z-index: 0;
+            z-index: -1;
             opacity: 0.6;
             pointer-events: none;
         }
 
-        section { position: relative; z-index: 1; background: transparent; }
+        section { position: relative; z-index: 1; }
 
         .container {
             width: 100%;
@@ -53,7 +65,67 @@
         }
 
         @media (min-width: 1024px) {
-            .container { max-width: 1300px; }
+            .container { max-width: 1350px; }
+        }
+
+        /* --- BOTÓN CTA PREMIUM --- */
+        .btn-cta {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+            padding: 22px 40px;
+            border-radius: 14px;
+            font-family: var(--font-title);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2);
+            border: none;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            z-index: 100;
+            text-transform: uppercase;
+            overflow: hidden; /* Para el efecto shimmer */
+        }
+
+        /* Efecto Shimmer (Brillo) */
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+
+        @keyframes shimmer {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+
+        .btn-cta { animation: pulse-shadow 3s infinite; }
+        .btn-cta::before { animation: shimmer 4s infinite; }
+
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
+            50% { box-shadow: 0 10px 40px rgba(223, 214, 181, 0.4); }
+            100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
+        }
+
+        /* Hover Efecto Desktop */
+        @media (min-width: 1024px) {
+            .btn-cta:hover {
+                transform: translateY(-6px) scale(1.03);
+                background-color: #fff;
+                box-shadow: 0 20px 50px rgba(223, 214, 181, 0.5);
+            }
+            .btn-cta:active { transform: translateY(-2px); }
         }
 
         /* --- SECCIÓN 1: HERO --- */
@@ -68,64 +140,39 @@
 
         .hero-logo img { height: 45px; margin-bottom: 40px; }
 
-        /* Pre-título resaltado */
         .exclusive-badge {
             display: inline-block;
-            padding: 14px 35px;
-            background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
+            padding: 14px 30px;
+            background: rgba(82, 65, 176, 0.2);
+            border: 1px solid var(--magenta);
             color: white;
             border-radius: 100px;
             font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 35px;
-            box-shadow: 0 0 30px rgba(188, 101, 222, 0.4);
-            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 0 40px rgba(188, 101, 222, 0.3);
         }
 
         .hero h1 {
             font-family: var(--font-title);
             font-size: 2.5rem;
             line-height: 1.1;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             background: linear-gradient(180deg, #FFF 30%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         @media (min-width: 1024px) {
-            .hero { min-height: 60vh; padding-top: 80px; }
+            .hero { min-height: 75vh; padding-top: 80px; }
             .hero h1 { 
                 font-size: 4.8rem; 
                 max-width: 1200px; 
-                margin: 0 auto 60px; /* Espaciado fijo para evitar pegote */
+                margin: 0 auto 120px; 
                 padding: 0 20px;
-                display: block;
             }
-            .exclusive-badge { font-size: 1.1rem; padding: 16px 45px; }
-        }
-
-        .btn-cta {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            padding: 22px 40px;
-            border-radius: 14px;
-            font-family: var(--font-title);
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(223, 214, 181, 0.2);
-            border: none;
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-            z-index: 10;
         }
 
         /* --- SECCIÓN 2: VSL --- */
@@ -133,6 +180,8 @@
             padding-bottom: 100px;
             margin-top: -100px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         .vsl-container {
@@ -145,12 +194,12 @@
         }
 
         .vsl-frame-mobile { width: 85%; aspect-ratio: 9/16; display: block; margin: 0 auto; }
-        .vsl-frame-desktop { width: 100%; max-width: 1050px; aspect-ratio: 16/9; display: none; }
+        .vsl-frame-desktop { width: 100%; max-width: 1100px; aspect-ratio: 16/9; display: none; }
 
         @media (min-width: 1024px) {
             .vsl-frame-mobile { display: none; }
             .vsl-frame-desktop { display: block; }
-            .vsl-section { margin-top: 0; padding-top: 40px; } /* Reset margen en desktop para evitar choque */
+            .vsl-section { margin-top: -160px; }
         }
 
         iframe { width: 100%; height: 100%; border: none; }
@@ -170,12 +219,12 @@
 
         /* --- SECCIÓN 4: LOGOS --- */
         .marquee-section { padding: 100px 0; text-align: center; }
-        .marquee-title { color: var(--gold); font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 3px; }
+        .marquee-title { color: var(--gold); font-family: var(--font-title); font-size: 1.6rem; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
         .marquee-container { width: 100%; overflow: hidden; position: relative; }
         .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
         
         .logo-card-slide {
-            width: 200px; height: 100px; margin: 0 15px;
+            width: 220px; height: 110px; margin: 0 15px;
             background: #fff; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             padding: 20px; flex-shrink: 0;
@@ -208,23 +257,24 @@
             .audit-card { min-width: auto; }
         }
 
-        /* --- SECCIÓN 7: BOOKING (FIJO) --- */
+        /* --- SECCIÓN 7: BOOKING --- */
         .booking-section { padding: 100px 0; text-align: center; }
         .booking-frame-container {
-            border-radius: 20px;
+            border-radius: 30px;
             overflow: hidden;
             background: #fff;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-            min-height: 800px; /* Altura corregida */
+            box-shadow: 0 60px 120px rgba(0,0,0,0.6);
+            position: relative;
+            min-height: 900px; 
             height: auto;
         }
         
         iframe#ghl-calendar {
             width: 100%;
-            min-height: 800px;
+            min-height: 900px;
             border: none;
         }
 
@@ -233,6 +283,9 @@
     </style>
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=875787031763008&ev=PageView&noscript=1"
+    /></noscript>
 
     <canvas id="tech-canvas"></canvas>
 
@@ -252,17 +305,17 @@
             <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=1&background=0&controls=1" allow="autoplay; fullscreen"></iframe>
         </div>
         <div class="vsl-container vsl-frame-desktop">
-            <iframe src="https://player.vimeo.com/video/1147384020?autoplay=1&muted=0&controls=1&badge=0&autopause=0" allow="autoplay; fullscreen"></iframe>
+            <iframe src="https://player.vimeo.com/video/1147384020?autoplay=1&muted=0&controls=1&badge=0" allow="autoplay; fullscreen"></iframe>
         </div>
         
         <div style="text-align: center; margin-top: 50px;">
             <a href="#booking" class="btn-cta">Agendá tu auditoría gratuita <i class="fa-solid fa-calendar-check calendar-icon"></i></a>
-            <p style="color: var(--magenta); font-weight: 600; margin-top: 20px;"><i class="fa-solid fa-fire"></i> QUEDAN SOLO 5 CUPOS ESTE MES</p>
+            <p style="color: var(--magenta); font-weight: 600; margin-top: 25px;"><i class="fa-solid fa-fire"></i> QUEDAN SOLO 5 CUPOS ESTE MES</p>
         </div>
     </section>
 
     <section class="pains-section container">
-        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.4rem; color: var(--gold);">¿Te identificás con estos dolores?</h2>
+        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.6rem; color: var(--gold);">¿Te identificás con estos dolores?</h2>
         <div class="pains-grid">
             <div class="pain-card"><i class="fa-solid fa-user-gear"></i> <p>Te ocupás del marketing y quisieras enfocarte solo en la venta.</p></div>
             <div class="pain-card"><i class="fa-solid fa-filter-circle-xmark"></i> <p>Invertís en publicidad pero los leads no sirven para nada.</p></div>
@@ -289,7 +342,7 @@
     </section>
 
     <section class="audit-section container">
-        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.2rem; margin-bottom: 40px;">Qué te llevas en tu <span style="color:var(--gold)">auditoría gratuita:</span></h2>
+        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.4rem; margin-bottom: 40px;">Qué te llevas en tu <span style="color:var(--gold)">auditoría gratuita:</span></h2>
         <div class="audit-slider">
             <div class="audit-card">
                 <div class="audit-number">01</div>
@@ -299,7 +352,7 @@
             <div class="audit-card">
                 <div class="audit-number">02</div>
                 <h3>Accionables Claros</h3>
-                <p>Pasos precisos para empezar a solucionar tus problemas de captación hoy mismo.</p>
+                <p>Pasos precisos e inmediatos para empezar a solucionar tus problemas hoy mismo.</p>
             </div>
             <div class="audit-card">
                 <div class="audit-number">03</div>
