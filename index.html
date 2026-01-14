@@ -71,7 +71,7 @@
         /* Pre-título resaltado */
         .exclusive-badge {
             display: inline-block;
-            padding: 12px 28px;
+            padding: 14px 35px;
             background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
             color: white;
             border-radius: 100px;
@@ -81,10 +81,9 @@
             text-transform: uppercase;
             margin-bottom: 35px;
             box-shadow: 0 0 30px rgba(188, 101, 222, 0.4);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* Título completo y horizontal en Desktop */
         .hero h1 {
             font-family: var(--font-title);
             font-size: 2.5rem;
@@ -96,13 +95,15 @@
         }
 
         @media (min-width: 1024px) {
-            .hero { min-height: 70vh; padding-top: 80px; }
+            .hero { min-height: 60vh; padding-top: 80px; }
             .hero h1 { 
                 font-size: 4.8rem; 
                 max-width: 1200px; 
-                margin: 0 auto 80px; 
+                margin: 0 auto 60px; /* Espaciado fijo para evitar pegote */
                 padding: 0 20px;
+                display: block;
             }
+            .exclusive-badge { font-size: 1.1rem; padding: 16px 45px; }
         }
 
         .btn-cta {
@@ -120,6 +121,7 @@
             font-size: 1.1rem;
             transition: 0.4s;
             box-shadow: 0 10px 40px rgba(223, 214, 181, 0.2);
+            border: none;
             width: 100%;
             max-width: 400px;
             position: relative;
@@ -148,7 +150,7 @@
         @media (min-width: 1024px) {
             .vsl-frame-mobile { display: none; }
             .vsl-frame-desktop { display: block; }
-            .vsl-section { margin-top: -180px; }
+            .vsl-section { margin-top: 0; padding-top: 40px; } /* Reset margen en desktop para evitar choque */
         }
 
         iframe { width: 100%; height: 100%; border: none; }
@@ -206,9 +208,8 @@
             .audit-card { min-width: auto; }
         }
 
-        /* --- SECCIÓN 7: BOOKING (CORREGIDO) --- */
-        .booking-section { padding: 100px 0; }
-        /* El contenedor ahora tiene altura dinámica para evitar cortes */
+        /* --- SECCIÓN 7: BOOKING (FIJO) --- */
+        .booking-section { padding: 100px 0; text-align: center; }
         .booking-frame-container {
             border-radius: 20px;
             overflow: hidden;
@@ -217,11 +218,14 @@
             max-width: 1000px;
             margin: 0 auto;
             box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-            min-height: 600px; /* Base para mobile */
+            min-height: 800px; /* Altura corregida */
+            height: auto;
         }
         
-        @media (min-width: 1024px) {
-            .booking-frame-container { min-height: 850px; }
+        iframe#ghl-calendar {
+            width: 100%;
+            min-height: 800px;
+            border: none;
         }
 
         .calendar-icon { animation: cal-bounce 2s infinite; }
@@ -248,7 +252,7 @@
             <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=1&background=0&controls=1" allow="autoplay; fullscreen"></iframe>
         </div>
         <div class="vsl-container vsl-frame-desktop">
-            <iframe src="https://player.vimeo.com/video/1147384020?autoplay=1&muted=0&controls=1&badge=0" allow="autoplay; fullscreen"></iframe>
+            <iframe src="https://player.vimeo.com/video/1147384020?autoplay=1&muted=0&controls=1&badge=0&autopause=0" allow="autoplay; fullscreen"></iframe>
         </div>
         
         <div style="text-align: center; margin-top: 50px;">
@@ -311,7 +315,7 @@
     <section id="booking" class="booking-section container">
         <div class="booking-frame-container">
             <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
-                    style="width: 100%; border:none; height: 100%; min-height: 800px; overflow: hidden;" 
+                    id="ghl-calendar"
                     scrolling="no"></iframe>
         </div>
     </section>
