@@ -39,13 +39,13 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.45;
+            opacity: 0.5;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 500px; /* Mobile First */
+            max-width: 500px;
             margin: 0 auto;
             padding: 0 25px;
         }
@@ -108,16 +108,16 @@
             transition: 0.3s;
         }
 
-        /* --- SECCIÓN 2: VSL (PEEK EFFECT) --- */
+        /* --- SECCIÓN 2: VSL --- */
         .vsl-section {
             padding-bottom: 60px;
-            margin-top: -100px; /* Sube para asomarse al hero */
+            margin-top: -100px; 
             position: relative;
             z-index: 10;
         }
 
         .vsl-frame {
-            width: 80%;
+            width: 82%;
             margin: 0 auto 30px;
             aspect-ratio: 9 / 16;
             background: #000;
@@ -127,8 +127,10 @@
             box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
 
+        iframe { width: 100%; height: 100%; border: none; }
+
         /* --- SECCIÓN 3: DOLORES --- */
-        .pains-section { padding: 80px 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
+        .pains-section { padding: 60px 0; }
         .pain-card {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.06);
@@ -138,16 +140,17 @@
             display: flex;
             gap: 15px;
             align-items: center;
+            backdrop-filter: blur(10px);
         }
         .pain-card i { color: var(--magenta); font-size: 1.2rem; }
 
-        /* --- SECCIÓN 4: LOGOS MARQUEE (ESTILO SOLICITADO) --- */
+        /* --- SECCIÓN 4: LOGOS --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
             position: relative;
-            padding: 60px 0;
-            background: rgba(14, 13, 15, 0.5);
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
         }
         
         .marquee-track {
@@ -157,23 +160,12 @@
         }
 
         .logo-card-slide {
-            width: 180px;
-            height: 90px;
-            margin: 0 15px;
-            background: #fff;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            flex-shrink: 0;
+            width: 160px; height: 80px; margin: 0 10px;
+            background: #fff; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            padding: 12px; flex-shrink: 0;
         }
-
-        .logo-card-slide.dark {
-            background: #2C2C31;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
+        .logo-card-slide.dark { background: #2C2C31; border: 1px solid rgba(255,255,255,0.1); }
         .logo-card-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         @keyframes scroll {
@@ -181,33 +173,76 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- SECCIÓN 5: CASOS SWIPE --- */
-        .swipe-section { padding: 80px 0; }
-        .cases-slider {
+        /* --- SECCIÓN NUEVA: QUÉ TE LLEVAS (SLIDER) --- */
+        .benefits-section { padding: 80px 0; }
+        .benefits-section h2 { 
+            font-family: var(--font-title); 
+            font-size: 1.8rem; 
+            margin-bottom: 30px; 
+            color: var(--gold); 
+            line-height: 1.2;
+        }
+
+        .benefits-slider {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 20px 0;
+            gap: 20px;
+            padding: 10px 0 30px;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
         }
-        .case-card {
-            min-width: 82%; /* Peek effect */
+        .benefits-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+        .benefit-card {
+            min-width: 85%; /* Peek effect */
             scroll-snap-align: center;
-            aspect-ratio: 9/16;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(145deg, rgba(82, 65, 176, 0.15) 0%, rgba(26, 26, 30, 0.4) 100%);
+            border: 1px solid rgba(188, 101, 222, 0.3);
+            padding: 40px 30px;
+            border-radius: 24px;
+            position: relative;
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 300px;
+        }
+
+        .benefit-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-family: var(--font-title);
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0.15;
+            background: linear-gradient(180deg, var(--magenta), transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .benefit-card h3 {
+            font-family: var(--font-title);
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--cream);
+            opacity: 0.9;
         }
 
         /* --- SECCIÓN 7: BOOKING --- */
-        .booking-section { padding: 80px 0; }
+        .booking-section { padding: 60px 0; }
         .booking-frame {
             border-radius: 24px;
             overflow: hidden;
             background: white;
-            min-height: 700px;
+            min-height: 750px;
         }
 
         .urgency-pill {
@@ -261,43 +296,28 @@
         <div class="urgency-pill">⚠️ QUEDAN SOLO 5 CUPOS ESTE MES</div>
     </section>
 
-    <section class="pains-section">
-        <div class="container">
-            <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center; color: var(--gold);">¿Te identificás con esto?</h2>
-            
-            <div class="pain-card">
-                <i class="fa-solid fa-check-circle"></i>
-                <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-check-circle"></i>
-                <p>Invertís en publicidad pero los leads no sirven.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-check-circle"></i>
-                <p>Tus referidos se acabaron para captar propiedades.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-check-circle"></i>
-                <p>Necesitás automatizar procesos para escalar.</p>
-            </div>
-            <div class="pain-card">
-                <i class="fa-solid fa-check-circle"></i>
-                <p>Necesitás un socio tecnológico para accionar tu base de datos.</p>
-            </div>
-
-            <a href="#booking" class="btn-main" style="margin-top: 30px;">
-                Agendá tu auditoría gratuita
-                <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
-            </a>
-            <div class="urgency-pill">🔥 ÚLTIMOS CUPOS DISPONIBLES</div>
+    <section class="pains-section container">
+        <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center; color: var(--gold);">¿Te identificás con esto?</h2>
+        
+        <div class="pain-card">
+            <i class="fa-solid fa-bolt-lightning"></i>
+            <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
+        </div>
+        <div class="pain-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p>Invertís en publicidad pero los leads no sirven.</p>
+        </div>
+        <div class="pain-card">
+            <i class="fa-solid fa-users-slash"></i>
+            <p>Tus referidos se acabaron para captar propiedades.</p>
+        </div>
+        <div class="pain-card">
+            <i class="fa-solid fa-microchip"></i>
+            <p>Necesitás automatizar procesos para escalar.</p>
         </div>
     </section>
 
     <section class="marquee-container">
-        <div style="text-align: center; margin-bottom: 30px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">
-            Confían en nosotros
-        </div>
         <div class="marquee-track">
             <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
             <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
@@ -305,8 +325,6 @@
             <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
             <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
             <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
-            <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
-            <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
             
             <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
             <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
@@ -314,45 +332,38 @@
             <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
             <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
             <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
-            <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
-            <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
         </div>
     </section>
 
-    <section class="swipe-section container">
-        <h2 style="font-family: var(--font-title); margin-bottom: 20px;">Casos de Éxito</h2>
-        <div class="cases-slider">
-            <div class="case-card">
-                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
+    <section class="benefits-section container">
+        <h2>Qué te llevas en tu auditoría gratuita:</h2>
+        
+        <div class="benefits-slider">
+            <div class="benefit-card">
+                <div class="benefit-number">01</div>
+                <h3>Diagnóstico Inmobiliario</h3>
+                <p>Analizamos a fondo el marketing que estás haciendo hoy en tu negocio inmobiliario para detectar fugas de dinero.</p>
             </div>
-            <div class="case-card">
-                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
+            <div class="benefit-card">
+                <div class="benefit-number">02</div>
+                <h3>Accionables Inmediatos</h3>
+                <p>Te entregamos accionables claros y precisos para que empieces a solucionar tus problemas de ventas hoy mismo.</p>
             </div>
-            <div class="case-card" style="display: flex; align-items: center; justify-content: center; background: #222;">
-                <p style="opacity: 0.5;">Ver más resultados...</p>
+            <div class="benefit-card">
+                <div class="benefit-number">03</div>
+                <h3>Nuestro Framework</h3>
+                <p>Conocerás la visión de nuestro framework de trabajo con el que escalamos a más de 20 empresas del sector en 2025.</p>
             </div>
         </div>
 
-        <div style="margin-top: 40px;">
-            <a href="#booking" class="btn-main">
-                Agendá tu auditoría gratuita
-                <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
-            </a>
-            <div class="urgency-pill">🔥 14 SEMANAS PARA TRANSFORMAR TU NEGOCIO</div>
-        </div>
-    </section>
-
-    <section class="container" style="padding: 40px 0 80px;">
-        <div style="background: var(--violet); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
-            <h2 style="color: white; margin-bottom: 25px; font-size: 1.5rem;">Lo que te llevas hoy:</h2>
-            <p style="margin-bottom: 15px; color: var(--gold);"><b>01. Diagnóstico:</b> Análisis del marketing que haces hoy.</p>
-            <p style="margin-bottom: 15px; color: var(--gold);"><b>02. Accionables:</b> Hoja de ruta para solucionar problemas hoy mismo.</p>
-            <p style="color: var(--gold);"><b>03. Framework:</b> Visión de cómo escalamos +20 empresas en 2025.</p>
-        </div>
+        <a href="#booking" class="btn-main" style="margin-top: 20px;">
+            Reservar mi auditoría
+            <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
+        </a>
     </section>
 
     <section id="booking" class="booking-section container">
-        <h2 style="font-family: var(--font-title); text-align: center; margin-bottom: 40px;">Reserva tu lugar</h2>
+        <h2 style="font-family: var(--font-title); text-align: center; margin-bottom: 40px;">Tu crecimiento empieza aquí</h2>
         <div class="booking-frame">
             <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
                     style="width: 100%; height: 750px; border:none; overflow: hidden;" 
@@ -368,7 +379,7 @@
         const canvas = document.getElementById('tech-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 60;
+        const particleCount = 80;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -386,32 +397,30 @@
                 this.pz = this.z;
             }
             update() {
-                this.z -= 0.8; // Velocidad de flujo
+                this.z -= 2.5; // Flujo constante
                 if (this.z <= 1) {
                     this.reset();
                     this.pz = this.z;
                 }
             }
             draw() {
-                ctx.fillStyle = '#BC65DE66';
-                ctx.strokeStyle = '#5241B022';
-                
-                // Proyección 3D básica
                 let sx = (this.x / this.z) * canvas.width/2 + canvas.width/2;
                 let sy = (this.y / this.z) * canvas.height/2 + canvas.height/2;
-                let r = (1 - this.z / canvas.width) * 2;
+                let r = (1 - this.z / canvas.width) * 3;
 
+                ctx.fillStyle = '#BC65DEAA';
                 ctx.beginPath();
                 ctx.arc(sx, sy, r, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Conexión entre partículas cercanas en pantalla
-                for (let p2 of particles) {
+                // Conexiones Tech
+                ctx.strokeStyle = '#5241B011';
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < 3; i++) {
+                    let p2 = particles[Math.floor(Math.random() * particles.length)];
                     let s2x = (p2.x / p2.z) * canvas.width/2 + canvas.width/2;
                     let s2y = (p2.y / p2.z) * canvas.height/2 + canvas.height/2;
-                    let dist = Math.hypot(sx - s2x, sy - s2y);
-                    
-                    if (dist < 100 && this.z < canvas.width/2) {
+                    if (Math.hypot(sx - s2x, sy - s2y) < 150) {
                         ctx.beginPath();
                         ctx.moveTo(sx, sy);
                         ctx.lineTo(s2x, s2y);
@@ -428,7 +437,7 @@
         }
 
         function animate() {
-            ctx.fillStyle = 'rgba(22, 21, 23, 0.2)'; // Estela para profundidad
+            ctx.fillStyle = 'rgba(22, 21, 23, 0.15)'; // Trail effect
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.update();
