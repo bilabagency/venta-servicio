@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>bi.lab | Escala tu Inmobiliaria</title>
+    <title>bi.lab | Business Intelligence & Growth</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
             --bg-dark: #161517;
+            --bg-card: #1c1c1f;
             --gold: #DFD6B5;
             --violet: #5241B0;
             --magenta: #BC65DE;
@@ -21,8 +22,9 @@
             --font-body: 'Archivo', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
         html { scroll-behavior: smooth; background-color: var(--bg-dark); }
+        
         body {
             background-color: var(--bg-dark);
             color: var(--cream);
@@ -31,18 +33,19 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* FONDO ANIMADO TECNOLOGICO */
-        #neural-canvas {
+        /* --- FONDO TECNOLÓGICO 3D PERSPECTIVE --- */
+        #tech-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.4;
+            opacity: 0.45;
             pointer-events: none;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 500px; /* Mobile First */
             margin: 0 auto;
             padding: 0 25px;
         }
@@ -51,43 +54,36 @@
             .container { max-width: 1100px; }
         }
 
-        /* SECCION 1: HERO */
+        /* --- SECCIÓN 1: HERO --- */
         .hero {
-            min-height: 75vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 30px;
+            padding-top: 40px;
             text-align: center;
         }
 
-        .hero-logo { margin-bottom: 40px; }
-        .hero-logo img { height: 40px; }
+        .hero-logo img { height: 42px; margin-bottom: 40px; }
 
         .exclusive-tag {
             display: inline-block;
             background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
             color: white;
-            padding: 10px 24px;
+            padding: 10px 22px;
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             box-shadow: 0 0 20px rgba(82, 65, 176, 0.4);
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px rgba(82, 65, 176, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(188, 101, 222, 0.6); }
-            100% { box-shadow: 0 0 10px rgba(82, 65, 176, 0.4); }
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: 2.6rem;
+            font-size: 2.5rem;
             line-height: 1.1;
             margin-bottom: 35px;
             background: linear-gradient(180deg, #FFF 0%, var(--gold) 100%);
@@ -109,36 +105,35 @@
             gap: 12px;
             font-size: 1.1rem;
             box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
-            border: none;
-            width: 100%;
+            transition: 0.3s;
         }
 
-        /* SECCION 2: VSL (EL VIDEO SUBE) */
+        /* --- SECCIÓN 2: VSL (PEEK EFFECT) --- */
         .vsl-section {
             padding-bottom: 60px;
+            margin-top: -100px; /* Sube para asomarse al hero */
             position: relative;
             z-index: 10;
-            margin-top: -120px; /* Video más cerca del Hero */
         }
 
         .vsl-frame {
-            width: 78%; /* Proporción estética */
+            width: 80%;
             margin: 0 auto 30px;
             aspect-ratio: 9 / 16;
             background: #000;
             border-radius: 24px;
             overflow: hidden;
-            border: 2px solid rgba(82, 65, 176, 0.5);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(82, 65, 176, 0.4);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
 
-        /* SECCION 3: DOLORES */
-        .pains-section { padding: 60px 0; background: rgba(0,0,0,0.4); }
+        /* --- SECCIÓN 3: DOLORES --- */
+        .pains-section { padding: 80px 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
         .pain-card {
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 22px;
+            border-radius: 18px;
             margin-bottom: 15px;
             display: flex;
             gap: 15px;
@@ -146,58 +141,95 @@
         }
         .pain-card i { color: var(--magenta); font-size: 1.2rem; }
 
-        .urgency-pill {
-            background: rgba(188, 101, 222, 0.1);
-            border: 1px solid var(--magenta);
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--magenta);
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
-
-        /* CALENDARIO ANIMADO */
-        .calendar-anim {
-            animation: bounce-cal 2s infinite;
-        }
-        @keyframes bounce-cal {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); color: var(--violet); }
-        }
-
-        /* MARQUEE LOGOS */
-        .marquee {
+        /* --- SECCIÓN 4: LOGOS MARQUEE (ESTILO SOLICITADO) --- */
+        .marquee-container {
+            width: 100%;
             overflow: hidden;
-            padding: 50px 0;
-            background: #111;
-            white-space: nowrap;
+            position: relative;
+            padding: 60px 0;
+            background: rgba(14, 13, 15, 0.5);
         }
-        .marquee-content {
-            display: inline-block;
-            animation: scroll 30s linear infinite;
+        
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
         }
-        .marquee img { height: 35px; margin: 0 30px; filter: grayscale(1) brightness(2); opacity: 0.6; }
+
+        .logo-card-slide {
+            width: 180px;
+            height: 90px;
+            margin: 0 15px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            flex-shrink: 0;
+        }
+
+        .logo-card-slide.dark {
+            background: #2C2C31;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-card-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* BOOKING */
-        .booking-frame {
+        /* --- SECCIÓN 5: CASOS SWIPE --- */
+        .swipe-section { padding: 80px 0; }
+        .cases-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .case-card {
+            min-width: 82%; /* Peek effect */
+            scroll-snap-align: center;
+            aspect-ratio: 9/16;
+            background: #000;
             border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- SECCIÓN 7: BOOKING --- */
+        .booking-section { padding: 80px 0; }
+        .booking-frame {
+            border-radius: 24px;
             overflow: hidden;
             background: white;
             min-height: 700px;
-            margin-top: 30px;
         }
+
+        .urgency-pill {
+            background: rgba(188, 101, 222, 0.1);
+            border: 1px solid var(--magenta);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--magenta);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .calendar-icon { animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
+    <canvas id="tech-canvas"></canvas>
 
     <section class="hero container">
         <div class="hero-logo">
@@ -224,9 +256,9 @@
         
         <a href="#booking" class="btn-main">
             Agendá tu auditoría gratuita
-            <i class="fa-solid fa-calendar-check calendar-anim"></i>
+            <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
         </a>
-        <div class="urgency-pill">🔥 QUEDAN 5 CUPOS ESTE MES</div>
+        <div class="urgency-pill">⚠️ QUEDAN SOLO 5 CUPOS ESTE MES</div>
     </section>
 
     <section class="pains-section">
@@ -234,48 +266,96 @@
             <h2 style="font-family: var(--font-title); margin-bottom: 30px; text-align: center; color: var(--gold);">¿Te identificás con esto?</h2>
             
             <div class="pain-card">
-                <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-check-circle"></i>
                 <p>Te ocupás del marketing y quisieras enfocarte en la venta.</p>
             </div>
             <div class="pain-card">
-                <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-check-circle"></i>
                 <p>Invertís en publicidad pero los leads no sirven.</p>
             </div>
             <div class="pain-card">
-                <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-check-circle"></i>
                 <p>Tus referidos se acabaron para captar propiedades.</p>
             </div>
             <div class="pain-card">
-                <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-check-circle"></i>
                 <p>Necesitás automatizar procesos para escalar.</p>
+            </div>
+            <div class="pain-card">
+                <i class="fa-solid fa-check-circle"></i>
+                <p>Necesitás un socio tecnológico para accionar tu base de datos.</p>
             </div>
 
             <a href="#booking" class="btn-main" style="margin-top: 30px;">
                 Agendá tu auditoría gratuita
-                <i class="fa-solid fa-calendar-check calendar-anim"></i>
+                <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
             </a>
-            <div class="urgency-pill">⚠️ Acción requerida: Auditoría sin costo.</div>
+            <div class="urgency-pill">🔥 ÚLTIMOS CUPOS DISPONIBLES</div>
         </div>
     </section>
 
-    <div class="marquee">
-        <div class="marquee-content">
-            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
-            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
-            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
-            <img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe">
-            <img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano">
-            <img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro">
-            <img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial">
-            <img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21">
+    <section class="marquee-container">
+        <div style="text-align: center; margin-bottom: 30px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">
+            Confían en nosotros
         </div>
-    </div>
+        <div class="marquee-track">
+            <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
+            <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
+            <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
+            <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
+            <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
+            <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
+            <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
+            <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
+            
+            <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
+            <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
+            <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
+            <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
+            <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
+            <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
+            <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
+            <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
+        </div>
+    </section>
 
-    <section id="booking" class="container" style="padding: 80px 25px;">
-        <h2 style="font-family: var(--font-title); text-align: center;">Reserva tu Auditoría 1-a-1</h2>
+    <section class="swipe-section container">
+        <h2 style="font-family: var(--font-title); margin-bottom: 20px;">Casos de Éxito</h2>
+        <div class="cases-slider">
+            <div class="case-card">
+                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="case-card">
+                <iframe src="https://player.vimeo.com/video/1148515376?badge=0" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="case-card" style="display: flex; align-items: center; justify-content: center; background: #222;">
+                <p style="opacity: 0.5;">Ver más resultados...</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <a href="#booking" class="btn-main">
+                Agendá tu auditoría gratuita
+                <i class="fa-solid fa-calendar-days calendar-icon" style="margin-left: 10px;"></i>
+            </a>
+            <div class="urgency-pill">🔥 14 SEMANAS PARA TRANSFORMAR TU NEGOCIO</div>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 40px 0 80px;">
+        <div style="background: var(--violet); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
+            <h2 style="color: white; margin-bottom: 25px; font-size: 1.5rem;">Lo que te llevas hoy:</h2>
+            <p style="margin-bottom: 15px; color: var(--gold);"><b>01. Diagnóstico:</b> Análisis del marketing que haces hoy.</p>
+            <p style="margin-bottom: 15px; color: var(--gold);"><b>02. Accionables:</b> Hoja de ruta para solucionar problemas hoy mismo.</p>
+            <p style="color: var(--gold);"><b>03. Framework:</b> Visión de cómo escalamos +20 empresas en 2025.</p>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section container">
+        <h2 style="font-family: var(--font-title); text-align: center; margin-bottom: 40px;">Reserva tu lugar</h2>
         <div class="booking-frame">
             <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
-                    style="width: 100%; height: 700px; border:none; overflow: hidden;" 
+                    style="width: 100%; height: 750px; border:none; overflow: hidden;" 
                     scrolling="no"></iframe>
         </div>
     </section>
@@ -285,9 +365,10 @@
     </footer>
 
     <script>
-        const canvas = document.getElementById('neural-canvas');
+        const canvas = document.getElementById('tech-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
+        const particleCount = 60;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -296,40 +377,63 @@
 
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
+                this.reset();
+            }
+            reset() {
+                this.x = (Math.random() - 0.5) * canvas.width * 2;
+                this.y = (Math.random() - 0.5) * canvas.height * 2;
+                this.z = Math.random() * canvas.width;
+                this.pz = this.z;
             }
             update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                this.z -= 0.8; // Velocidad de flujo
+                if (this.z <= 1) {
+                    this.reset();
+                    this.pz = this.z;
+                }
+            }
+            draw() {
+                ctx.fillStyle = '#BC65DE66';
+                ctx.strokeStyle = '#5241B022';
+                
+                // Proyección 3D básica
+                let sx = (this.x / this.z) * canvas.width/2 + canvas.width/2;
+                let sy = (this.y / this.z) * canvas.height/2 + canvas.height/2;
+                let r = (1 - this.z / canvas.width) * 2;
+
+                ctx.beginPath();
+                ctx.arc(sx, sy, r, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Conexión entre partículas cercanas en pantalla
+                for (let p2 of particles) {
+                    let s2x = (p2.x / p2.z) * canvas.width/2 + canvas.width/2;
+                    let s2y = (p2.y / p2.z) * canvas.height/2 + canvas.height/2;
+                    let dist = Math.hypot(sx - s2x, sy - s2y);
+                    
+                    if (dist < 100 && this.z < canvas.width/2) {
+                        ctx.beginPath();
+                        ctx.moveTo(sx, sy);
+                        ctx.lineTo(s2x, s2y);
+                        ctx.stroke();
+                    }
+                }
             }
         }
 
         function init() {
             resize();
-            for(let i=0; i<40; i++) particles.push(new Particle());
+            for(let i=0; i<particleCount; i++) particles.push(new Particle());
             animate();
         }
 
         function animate() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = '#BC65DE33';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
+            ctx.fillStyle = 'rgba(22, 21, 23, 0.2)'; // Estela para profundidad
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.update();
-                particles.forEach(p2 => {
-                    let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (d < 120) {
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                    }
-                });
+                p.draw();
             });
-            ctx.stroke();
             requestAnimationFrame(animate);
         }
 
