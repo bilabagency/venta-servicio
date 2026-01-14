@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>bi.lab | Escala tu Inmobiliaria</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #161517; /* Black del manual [cite: 5] */
+            --gold: #DFD6B5;    /* Gold del manual [cite: 4] */
+            --violet: #5241B0;  /* Violet del manual [cite: 7] */
+            --magenta: #BC65DE; /* Magenta del manual [cite: 11] */
+            --cream: #FDFAF0;   /* Cream del manual [cite: 9] */
+            --font-title: 'Quicksand', sans-serif;
+            --font-body: 'Archivo', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--cream); 
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        /* Fondo Animado Permanente */
+        #tech-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: radial-gradient(circle at center, #23288E 0%, #161517 100%);
+        }
+
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+
+        /* --- SECCIÓN 1: HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+        }
+        .pre-title {
+            color: var(--magenta);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--cream), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        .pain-graphic {
+            width: 100%;
+            height: 200px;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800') center/cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            filter: grayscale(1) contrast(1.2) sepia(0.2);
+            border: 1px solid var(--violet);
+            box-shadow: 0 0 20px rgba(82, 65, 176, 0.3);
+        }
+
+        /* --- BOTONES & CTA --- */
+        .btn-cta {
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 18px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-title);
+            box-shadow: 0 10px 30px rgba(223, 214, 181, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animación Calendario en Botón */
+        .calendar-anim {
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+
+        .urgency-tag {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--magenta);
+            margin-top: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- SECCIÓN 2: VSL --- */
+        .vsl-container {
+            margin: 40px -20px;
+            background: #000;
+            position: relative;
+            aspect-ratio: 9/16;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- SECCIÓN 3: DOLORES --- */
+        .pains-list {
+            background: rgba(82, 65, 176, 0.1);
+            border: 1px solid rgba(188, 101, 222, 0.2);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+        .pain-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .pain-item i { color: var(--gold); margin-top: 4px; }
+
+        /* --- SECCIÓN 4 & 5: SLIDERS --- */
+        .slider-peek {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 20px 0;
+            margin: 0 -20px;
+            padding-left: 20px;
+        }
+        .video-card {
+            min-width: 85%;
+            scroll-snap-align: center;
+            aspect-ratio: 9/16;
+            background: #2C2C31;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* --- SECCIÓN 7: CALENDARIO --- */
+        .calendar-embed {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 10px;
+            min-height: 600px;
+        }
+
+        h2 { font-family: var(--font-title); font-size: 1.8rem; margin-bottom: 20px; color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <canvas id="tech-bg"></canvas>
+
+    <section class="hero container">
+        <div class="logo" style="margin-bottom: 40px;">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab" width="120">
+        </div>
+        <div class="pain-graphic"></div>
+        <span class="pre-title">Solo para inmobiliarias y agentes</span>
+        <h1>Escalá en ventas y captaciones en 14 semanas.</h1>
+        <a href="#vsl" class="btn-cta">Mirá cómo lo hacemos <i class="fa-solid fa-chevron-down"></i></a>
+    </section>
+
+    <section id="vsl" class="container">
+        <div class="vsl-container">
+            <iframe src="https://player.vimeo.com/video/1148515376?autoplay=1&muted=0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+        </div>
+        <a href="#booking" class="btn-cta">
+            Agendá tu auditoría gratuita 
+            <i class="fa-solid fa-calendar-check calendar-anim"></i>
+        </a>
+        <div class="urgency-tag">🔥 QUEDAN SOLO 5 CUPOS ESTE MES</div>
+    </section>
+
+    <section class="container">
+        <h2>¿Te identificás con esto?</h2>
+        <div class="pains-list">
+            <div class="pain-item"><i class="fa-solid fa-circle-exclamation"></i> Te ocupás del marketing y quisieras enfocarte en vender.</div>
+            <div class="pain-item"><i class="fa-solid fa-circle-exclamation"></i> Invertís en publicidad pero los leads no sirven.</div>
+            <div class="pain-item"><i class="fa-solid fa-circle-exclamation"></i> Tus referidos se acabaron para captar propiedades.</div>
+            <div class="pain-item"><i class="fa-solid fa-circle-exclamation"></i> Necesitás automatizar para poder escalar.</div>
+        </div>
+        <a href="#booking" class="btn-cta">Agendá tu auditoría <i class="fa-solid fa-calendar-check calendar-anim"></i></a>
+        <div class="urgency-tag">⚠️ Acción requerida: Auditoría sin costo.</div>
+    </section>
+
+    <section class="container">
+        <h2>Casos de Éxito</h2>
+        <div class="slider-peek">
+            <div class="video-card">
+                <iframe src="https://player.vimeo.com/video/1148515376?badge=0&autopause=0" frameborder="0"></iframe>
+            </div>
+            <div class="video-card">
+                <div style="padding: 40px; text-align: center;">[Video Caso 2 - Peek]</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Lo que te llevás hoy:</h2>
+        <div style="margin-bottom: 30px;">
+            <p style="margin-bottom: 15px;"><strong>1. Diagnóstico:</strong> Análisis real de tu marketing actual.</p>
+            <p style="margin-bottom: 15px;"><strong>2. Accionables:</strong> Hoja de ruta para solucionar problemas hoy.</p>
+            <p style="margin-bottom: 15px;"><strong>3. El Framework:</strong> Cómo escalamos +20 inmobiliarias en 2025.</p>
+        </div>
+    </section>
+
+    <section id="booking" class="container">
+        <h2>Reservá tu lugar</h2>
+        <div class="calendar-embed">
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" style="width: 100%; height: 600px; border:none; overflow: hidden;"></iframe>
+        </div>
+    </section>
+
+    <footer style="padding: 40px 20px; text-align: center; font-size: 0.8rem; color: #666;">
+        &copy; 2026 bi.lab | Business Intelligence & Growth
+    </footer>
+
+    <script>
+        // Animación de Fondo Tech (Canvas)
+        const canvas = document.getElementById('tech-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            for(let i=0; i<30; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.strokeStyle = '#5241B033';
+            ctx.beginPath();
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.moveTo(p.x, p.y);
+                particles.forEach(p2 => {
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if(dist < 150) ctx.lineTo(p2.x, p2.y);
+                });
+            });
+            ctx.stroke();
+            requestAnimationFrame(draw);
+        }
+
+        init();
+        draw();
+    </script>
+</body>
+</html>
