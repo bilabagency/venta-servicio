@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Casos de Éxito | bi.lab</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #161517;
+            --gold: #DFD6B5;
+            --violet: #5241B0;
+            --magenta: #BC65DE;
+            --cream: #FDFAF0;
+            --font-title: 'Quicksand', sans-serif;
+            --font-body: 'Archivo', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; background-color: var(--bg-dark); }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--cream);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+
+        /* --- HEADER --- */
+        header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .back-link:hover { color: #fff; transform: translateX(-5px); }
+        .logo-small img { height: 30px; }
+
+        /* --- HERO --- */
+        .hero-cases { padding: 40px 0 60px; text-align: center; }
+        .pre-title { color: var(--magenta); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 20px; display: block; }
+        .hero-cases h1 { font-family: var(--font-title); font-size: 2.2rem; line-height: 1.2; background: linear-gradient(180deg, #FFF 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 800px; margin: 0 auto; }
+
+        /* --- NAVEGACIÓN --- */
+        .cases-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
+        .nav-item { padding: 10px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream); text-decoration: none; font-size: 0.85rem; transition: 0.3s; background: rgba(255,255,255,0.02); }
+        .nav-item.active { border-color: var(--magenta); background: rgba(188, 101, 222, 0.15); color: #fff; box-shadow: 0 0 20px rgba(188, 101, 222, 0.2); }
+        .nav-item:hover:not(.active) { background: rgba(255,255,255,0.08); }
+
+        /* --- WRAPPER DE CASO --- */
+        .case-study-wrapper { margin-bottom: 100px; }
+        
+        .case-intro { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: stretch; margin-bottom: 60px; }
+        .case-intro h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .case-badge { display: inline-block; padding: 6px 15px; background: rgba(188, 101, 222, 0.2); border: 1px solid var(--magenta); color: white; border-radius: 6px; font-weight: 700; font-size: 0.7rem; margin-bottom: 15px; text-transform: uppercase; }
+
+        .info-card { background: rgba(255,255,255,0.03); padding: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+        .info-card h3 { color: var(--gold); margin-bottom: 15px; font-family: var(--font-title); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .info-card p { line-height: 1.6; opacity: 0.8; font-size: 0.95rem; }
+
+        /* --- ESTRATEGIA / ROADMAP MEJORADO --- */
+        .roadmap-container { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(188, 101, 222, 0.15); 
+            border-radius: 32px; 
+            padding: 50px 30px; 
+            margin: 60px 0; 
+            position: relative;
+        }
+        .roadmap-title { text-align: center; margin-bottom: 50px; color: var(--magenta); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .step-card { 
+            background: rgba(10, 10, 12, 0.4); 
+            padding: 40px 25px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            position: relative; 
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .step-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); transform: translateY(-5px); }
+        
+        .step-number { 
+            position: absolute; top: 15px; right: 20px; 
+            font-size: 4rem; font-weight: 800; 
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0.25; line-height: 1;
+        }
+        .step-card h4 { font-family: var(--font-title); color: var(--gold); font-size: 1.15rem; margin-bottom: 12px; position: relative; z-index: 2; }
+        .step-card p { font-size: 0.85rem; opacity: 0.8; line-height: 1.5; position: relative; z-index: 2; }
+
+        /* --- CONTENIDO DINÁMICO --- */
+        .content-section { margin-top: 80px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h3 { font-family: var(--font-title); font-size: 1.8rem; color: #fff; }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 60px; }
+        .content-text p { line-height: 1.7; opacity: 0.9; font-size: 1rem; margin-bottom: 20px; }
+        .content-text b { color: var(--gold); }
+
+        .video-wrapper { 
+            border-radius: 24px; overflow: hidden; 
+            background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .video-wrapper.horizontal { aspect-ratio: 16/9; }
+        .video-wrapper.vertical { aspect-ratio: 9/16; max-width: 320px; margin: 0 auto; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .smart-list { list-style: none; margin-top: 25px; }
+        .smart-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
+        .smart-list li i { color: var(--magenta); font-size: 1rem; }
+
+        .conclusion-box { 
+            background: linear-gradient(145deg, rgba(188, 101, 222, 0.1), rgba(10, 10, 12, 0.9)); 
+            padding: 50px; border-radius: 32px; text-align: center; 
+            border: 1px solid rgba(188, 101, 222, 0.3);
+            margin-top: 80px;
+        }
+        .conclusion-box h4 { font-family: var(--font-title); font-size: 1.6rem; margin-bottom: 15px; color: var(--gold); }
+        .conclusion-box p { max-width: 800px; margin: 0 auto; opacity: 0.8; line-height: 1.6; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .case-intro, .content-grid, .steps-grid { grid-template-columns: 1fr; }
+            .case-intro { text-align: center; }
+            .hero-cases h1 { font-size: 1.8rem; }
+            .case-study-wrapper { padding: 0; }
+            .video-wrapper.vertical { max-width: 100%; }
+            .roadmap-container { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            <div class="logo-small">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab">
+            </div>
+        </header>
+
+        <section class="hero-cases">
+            <span class="pre-title">Casos de Estudio</span>
+            <h1>Estrategias reales que transformaron negocios inmobiliarios.</h1>
+        </section>
+
+        <nav class="cases-nav">
+            <a href="#ana" class="nav-item active">Ana Arbarello</a>
+            <a href="#defranco" class="nav-item">De Franco Propiedades</a>
+            <a href="#urbano" class="nav-item">Urbano Inmobiliaria</a>
+        </nav>
+
+        <section id="ana" class="case-study-wrapper">
+            <div class="case-intro">
+                <div>
+                    <span class="case-badge">Agente Remax</span>
+                    <h2>Ana Arbarello</h2>
+                    <p style="font-size: 1.1rem; opacity: 0.8; line-height: 1.6;">De una agenda agotada de referidos a captar propiedades de lujo mediante un sistema de segmentación emocional y tecnología IA.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-circle-exclamation"></i> El Problema</h3>
+                    <p>Base de datos estancada y nula visibilidad en portales inmobiliarios tradicionales. Su stock no rotaba y la captación dependía exclusivamente de terceros.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-container">
+                <div class="roadmap-title">La Estrategia bi.lab</div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h4>Auditoría de Datos</h4>
+                        <p>Identificamos que el 84% de sus cierres exitosos eran mujeres +50 años con necesidades de "downsizing" o seguridad emocional.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h4>Nicho Emocional</h4>
+                        <p>Dejamos de vender "metros cuadrados" para vender "cambio de vida". Creamos guiones basados en la escucha activa y miedos reales.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h4>Sistema Inteligente</h4>
+                        <p>Instalamos un sistema de filtrado automático que descarta curiosos y prioriza leads con interés de compra real.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>Parte 1: Captación de Propiedades de Lujo</h3>
+                </div>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <p>Descubrimos el <b>"Avatar de Cliente Ideal"</b>: mujeres que buscan seguridad y proximidad, no rentabilidad financiera. Atacamos sus dolores específicos.</p>
+                        <p>Ana dejó de hablarle a todos para hablarle a <b>alguien puntual</b>. El resultado fue inmediato: captación de dos unidades premium en Núñez.</p>
+                        <ul class="smart-list">
+                            <li><i class="fa-solid fa-circle-check"></i> 2 Propiedades captadas de +450.000 USD.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Costo por captación calificada reducido en un 60%.</li>
+                        </ul>
+                    </div>
+                    <div class="video-wrapper horizontal">
+                        <iframe src="https://player.vimeo.com/video/1150172667?h=3fd4815a3a" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>Parte 2: Venta en 45 días con IA</h3>
+                </div>
+                <div class="content-grid">
+                    <div class="video-wrapper vertical">
+                        <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                    <div class="content-text">
+                        <p>Seleccionamos el stock competitivo y usamos <b>Edición con IA</b> para animar renders. Logramos que el prospecto "viviera" el departamento antes de que esté terminado.</p>
+                        <p>Instalamos un sistema de seguimiento automático que no deja enfriar ningún lead calificado.</p>
+                        <ul class="smart-list">
+                            <li><i class="fa-solid fa-robot"></i> Filtrado automático de leads en CRM propio.</li>
+                            <li><i class="fa-solid fa-clock"></i> Seguimiento 24/7 sin intervención humana.</li>
+                            <li><i class="fa-solid fa-money-bill-trend-up"></i> Venta concretada en solo 45 días.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conclusion-box">
+                <h4>El resultado final</h4>
+                <p>Ana Arbarello no solo vendió y captó propiedades de alto valor; logró construir un <b>activo digital propio</b>. Ya no depende de portales ni de referidos. Hoy cuenta con un sistema tecnológico que califica prospectos por ella, permitiéndole enfocarse únicamente en lo que mejor hace: cerrar ventas.</p>
+            </div>
+        </section>
+
+        <section id="defranco" style="padding: 60px 0; opacity: 0.3; text-align: center; border-top: 1px dashed rgba(255,255,255,0.1);">
+            <p>Caso De Franco Propiedades - Próximamente</p>
+        </section>
+        <section id="urbano" style="padding: 60px 0; opacity: 0.3; text-align: center;">
+            <p>Caso Urbano Inmobiliaria - Próximamente</p>
+        </section>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; opacity: 0.2; font-size: 0.8rem;">
+        &copy; 2026 bi.lab | Business Intelligence & Growth.
+    </footer>
+
+</body>
+</html>
