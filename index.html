@@ -43,12 +43,11 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            /* --- NUEVO FONDO TECNOLÓGICO SUTIL QUE SCROLLEA --- */
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px; /* Tamaño de la cuadrícula */
-            background-attachment: scroll; /* Se mueve con la página */
+            background-size: 40px 40px;
+            background-attachment: scroll;
             background-position: center top;
         }
 
@@ -142,7 +141,6 @@
 
         .hero-logo img { height: 45px; margin-bottom: 40px; }
 
-        /* --- INICIO MODIFICACIÓN BADGE --- */
         @keyframes blink-glow {
             0%, 100% {
                 border-color: var(--magenta);
@@ -160,7 +158,7 @@
             display: inline-block;
             padding: 14px 30px;
             background: rgba(82, 65, 176, 0.2);
-            border: 2px solid var(--magenta); /* Aumenté un poco el grosor para que se note más */
+            border: 2px solid var(--magenta);
             color: white;
             border-radius: 100px;
             font-size: 0.9rem;
@@ -169,10 +167,8 @@
             text-transform: uppercase;
             margin-bottom: 35px;
             box-shadow: 0 0 40px rgba(188, 101, 222, 0.3);
-            /* Añadida animación de parpadeo */
             animation: blink-glow 2.5s infinite ease-in-out;
         }
-        /* --- FIN MODIFICACIÓN BADGE --- */
 
         .hero h1 {
             font-family: var(--font-title);
@@ -220,6 +216,66 @@
 
         iframe { width: 100%; height: 100%; border: none; }
 
+        /* --- NUEVOS ESTILOS PARA CASOS DE ÉXITO --- */
+        .cases-section { padding: 100px 0; }
+        .cases-header { text-align: center; margin-bottom: 60px; }
+        .cases-header h2 { font-family: var(--font-title); font-size: 2.2rem; line-height: 1.2; color: var(--cream); }
+        .cases-header h2 span { color: var(--gold); }
+
+        .cases-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0 40px;
+            scrollbar-width: none;
+        }
+        .cases-slider::-webkit-scrollbar { display: none; }
+
+        .case-card {
+            min-width: 85%;
+            scroll-snap-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .case-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
+        .case-profile img { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+        .case-logo-img { width: 110px; height: 50px; object-fit: contain; }
+        
+        .case-profile h4 { font-family: var(--font-title); font-size: 1.2rem; color: var(--gold); }
+        .case-profile p { font-size: 0.85rem; opacity: 0.6; }
+
+        .case-content { flex-grow: 1; }
+        .case-label { font-size: 0.75rem; text-transform: uppercase; color: var(--magenta); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .case-text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; opacity: 0.9; }
+
+        .case-result-badge { 
+            background: rgba(188, 101, 222, 0.1); 
+            border-left: 3px solid var(--magenta); 
+            padding: 15px; 
+            border-radius: 0 12px 12px 0; 
+        }
+        .case-result-badge p { font-weight: 600; font-size: 0.95rem; }
+
+        .case-footer { margin-top: 25px; color: var(--gold); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+
+        @media (min-width: 1024px) {
+            .cases-slider { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; gap: 30px; }
+            .case-card { min-width: auto; }
+            .case-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.06); border-color: var(--gold); }
+            .cases-header h2 { font-size: 2.8rem; max-width: 900px; margin: 0 auto; }
+        }
+
+        /* --- ESTILOS ORIGINALES RESTANTES --- */
         .pains-section { padding: 100px 0; }
         .pains-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 50px; }
         @media (min-width: 1024px) { .pains-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; } }
@@ -327,17 +383,6 @@
         </div>
     </section>
 
-    <section class="pains-section container">
-        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.6rem; color: var(--gold);">¿Te identificás con estos dolores?</h2>
-        <div class="pains-grid">
-            <div class="pain-card"><i class="fa-solid fa-user-gear"></i> <p>Te ocupás del marketing y quisieras enfocarte solo en la venta.</p></div>
-            <div class="pain-card"><i class="fa-solid fa-filter-circle-xmark"></i> <p>Invertís en publicidad pero los leads no sirven para nada.</p></div>
-            <div class="pain-card"><i class="fa-solid fa-address-book"></i> <p>Tus referidos se fueron acabando para captar propiedades.</p></div>
-            <div class="pain-card"><i class="fa-solid fa-robot"></i> <p>Necesitás automatizar procesos para escalar tu negocio.</p></div>
-            <div class="pain-card"><i class="fa-solid fa-database"></i> <p>Necesitás un socio tecnológico para accionar tu base de datos.</p></div>
-        </div>
-    </section>
-
     <section class="marquee-section">
         <h3 class="marquee-title">Confían en nosotros</h3>
         <div class="marquee-container">
@@ -351,6 +396,82 @@
                 <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
                 <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
             </div>
+        </div>
+    </section>
+
+    <section class="cases-section container">
+        <div class="cases-header">
+            <h2>Te presentamos 3 casos de éxito, y te contamos cuál fue la <span>estrategia</span> aplicada.</h2>
+        </div>
+        
+        <div class="cases-slider">
+            <a href="#" target="_blank" class="case-card">
+                <div class="case-profile">
+                    <img src="https://i.ibb.co/R40nsDB8/IMG-20251104-WA0038.jpg" alt="Ana Arbarello">
+                    <div>
+                        <h4>Ana Arbarello</h4>
+                        <p>Agente Inmobiliaria • Buenos Aires</p>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <span class="case-label">Problemas</span>
+                    <p class="case-text">Pocas consultas en portales y agotamiento de referidos para captar nuevas propiedades.</p>
+                    <span class="case-label">Resultado</span>
+                    <div class="case-result-badge">
+                        <p>+10 visitas calificadas, 2 ventas vía publicidad y 2 captaciones de +450k USD en solo 60 días.</p>
+                    </div>
+                </div>
+                <div class="case-footer">Ver estrategia completa <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#" target="_blank" class="case-card">
+                <div class="case-profile">
+                    <img src="https://static.tokkobroker.com/tfw_images/1540_DE%20FRANCO%20PROPIEDADES/logo_2-removebg-preview.png" alt="De Franco" class="case-logo-img">
+                    <div>
+                        <h4>De Franco Propiedades</h4>
+                        <p>Inmobiliaria • Buenos Aires</p>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <span class="case-label">Contexto</span>
+                    <p class="case-text">Falta de centralización de leads de +15 agentes y aumento constante de costos en portales.</p>
+                    <span class="case-label">Resultado bi.lab</span>
+                    <div class="case-result-badge">
+                        <p>Leads centralizados, asignación automatizada y +200 consultas de compra semanales.</p>
+                    </div>
+                </div>
+                <div class="case-footer">Ver estrategia completa <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#" target="_blank" class="case-card">
+                <div class="case-profile">
+                    <img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano" class="case-logo-img">
+                    <div>
+                        <h4>Urbano Inmobiliaria</h4>
+                        <p>Inmobiliaria • Santa Fe</p>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <span class="case-label">Desafío Rentas</span>
+                    <p class="case-text">Demasiada demanda de alquileres calificando inquilinos de forma manual perdiendo horas hombre.</p>
+                    <span class="case-label">Solución bi.lab</span>
+                    <div class="case-result-badge">
+                        <p>Sistema experto de scoring para inquilinos y +120 consultas de compra semanales centralizadas.</p>
+                    </div>
+                </div>
+                <div class="case-footer">Ver estrategia completa <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </section>
+
+    <section class="pains-section container">
+        <h2 style="font-family: var(--font-title); text-align: center; font-size: 2.6rem; color: var(--gold);">¿Te identificás con estos dolores?</h2>
+        <div class="pains-grid">
+            <div class="pain-card"><i class="fa-solid fa-user-gear"></i> <p>Te ocupás del marketing y quisieras enfocarte solo en la venta.</p></div>
+            <div class="pain-card"><i class="fa-solid fa-filter-circle-xmark"></i> <p>Invertís en publicidad pero los leads no sirven para nada.</p></div>
+            <div class="pain-card"><i class="fa-solid fa-address-book"></i> <p>Tus referidos se fueron acabando para captar propiedades.</p></div>
+            <div class="pain-card"><i class="fa-solid fa-robot"></i> <p>Necesitás automatizar procesos para escalar tu negocio.</p></div>
+            <div class="pain-card"><i class="fa-solid fa-database"></i> <p>Necesitás un socio tecnológico para accionar tu base de datos.</p></div>
         </div>
     </section>
 
