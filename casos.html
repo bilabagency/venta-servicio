@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* --- VARIABLES Y ESTILOS GENERALES --- */
+        /* --- VARIABLES Y ESTILOS BASE (Mantenidos) --- */
         :root {
             --bg-dark: #0a0a0c;
             --bg-card: #161517;
@@ -35,11 +35,25 @@
         }
         .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; }
 
-        /* --- BOTÓN CTA PREMIUM (Llamativo y Grande) --- */
+        /* --- HEADER & HERO (Desktop) --- */
+        header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .back-link:hover { color: #fff; transform: translateX(-5px); }
+        .logo-small img { height: 30px; }
+        .hero-cases { padding: 40px 0 60px; text-align: center; }
+        .pre-title { color: var(--magenta); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 20px; display: block; }
+        .hero-cases h1 { font-family: var(--font-title); font-size: 2.2rem; line-height: 1.2; background: linear-gradient(180deg, #FFF 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 800px; margin: 0 auto; }
+        
+        /* --- NAVEGACIÓN --- */
+        .cases-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
+        .nav-item { padding: 10px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream); text-decoration: none; font-size: 0.85rem; transition: 0.3s; background: rgba(255,255,255,0.02); }
+        .nav-item.active { border-color: var(--magenta); background: rgba(188, 101, 222, 0.15); color: #fff; box-shadow: 0 0 20px rgba(188, 101, 222, 0.2); }
+
+        /* --- BOTÓN CTA --- */
         .btn-cta-cases {
             background-color: var(--gold);
             color: var(--bg-dark);
-            padding: 25px 50px;
+            padding: 22px 40px;
             border-radius: 16px;
             font-family: var(--font-title);
             font-weight: 700;
@@ -48,12 +62,12 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
             border: none;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             position: relative;
             text-transform: uppercase;
             overflow: hidden;
@@ -61,49 +75,12 @@
             margin: 40px auto 0;
             display: flex;
         }
-
-        /* Efecto Shimmer (Brillo) */
-        .btn-cta-cases::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg);
-            animation: shimmer 4s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -150%; }
-            100% { left: 150%; }
-        }
-
+        .btn-cta-cases::before { content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 4s infinite; }
+        @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
         .btn-cta-cases { animation: pulse-shadow 3s infinite; }
+        @keyframes pulse-shadow { 0%, 100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); } 50% { box-shadow: 0 10px 45px rgba(223, 214, 181, 0.5); transform: scale(1.02); } }
 
-        @keyframes pulse-shadow {
-            0% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
-            50% { box-shadow: 0 10px 45px rgba(223, 214, 181, 0.5); transform: scale(1.02); }
-            100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
-        }
-
-        .btn-cta-cases:hover {
-            background-color: #fff;
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        /* --- HEADER & HERO --- */
-        header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
-        .back-link { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .back-link:hover { color: #fff; transform: translateX(-5px); }
-        .logo-small img { height: 30px; }
-        .hero-cases { padding: 40px 0 60px; text-align: center; }
-        .pre-title { color: var(--magenta); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 20px; display: block; }
-        .hero-cases h1 { font-family: var(--font-title); font-size: 2.2rem; line-height: 1.2; background: linear-gradient(180deg, #FFF 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 800px; margin: 0 auto; }
-        .cases-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
-        .nav-item { padding: 10px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream); text-decoration: none; font-size: 0.85rem; transition: 0.3s; background: rgba(255,255,255,0.02); }
-        .nav-item.active { border-color: var(--magenta); background: rgba(188, 101, 222, 0.15); color: #fff; box-shadow: 0 0 20px rgba(188, 101, 222, 0.2); }
-
-        /* --- ESTRUCTURA DE CASO --- */
+        /* --- ESTUCTURA DE CASO (Desktop Grid) --- */
         .case-study-wrapper { margin-bottom: 150px; }
         .case-intro { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: stretch; margin-bottom: 60px; }
         .case-intro h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--gold); margin-bottom: 20px; }
@@ -111,6 +88,7 @@
         .info-card { background: rgba(255, 255, 255, 0.03); padding: 35px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); }
         .info-card h3 { color: var(--gold); margin-bottom: 15px; font-family: var(--font-title); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
         .info-card p { line-height: 1.6; opacity: 0.8; font-size: 0.95rem; }
+
         .roadmap-container { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(188, 101, 222, 0.15); border-radius: 32px; padding: 50px 30px; margin: 60px 0; }
         .roadmap-title { text-align: center; margin-bottom: 50px; color: var(--magenta); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
         .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
@@ -147,25 +125,21 @@
         .mockup-title { font-size: 0.7rem; font-weight: 700; color: #666; text-transform: uppercase; margin-left: 10px; }
         .mockup-body { padding: 25px; }
         .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
-        .metric-box { background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .metric-box { background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; }
         .m-label { display: block; font-size: 0.65rem; color: #888; font-weight: 700; margin-bottom: 5px; }
         .m-value { display: block; font-size: 1.4rem; font-weight: 800; color: var(--bg-dark); }
         .m-sub { font-size: 0.55rem; color: var(--magenta); font-weight: 600; }
-        .chart-container { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); height: 100%; }
-        .chart-title { font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; color: #444; display: flex; justify-content: space-between; align-items: center; }
+        .chart-container { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
         .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; padding-top: 20px; }
-        .bar { width: 25px; background: #f2d55e; border-radius: 4px 4px 0 0; position: relative; transition: height 0.5s ease; }
+        .bar { width: 25px; background: #f2d55e; border-radius: 4px 4px 0 0; position: relative; }
         .bar span { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; font-weight: 800; }
-        .bar::after { content: attr(data-name); position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; white-space: nowrap; color: #888; }
+        .bar::after { content: attr(data-name); position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #888; }
         .pipeline-board { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-        .pipeline-column { background: #e3e3e1; border-radius: 6px; min-width: 120px; padding: 8px; flex: 1; }
+        .pipeline-column { background: #e3e3e1; border-radius: 6px; min-width: 140px; padding: 8px; flex: 1; }
         .column-header { font-weight: 700; font-size: 0.7rem; color: #666; margin-bottom: 8px; display: flex; justify-content: space-between; }
         .lead-card { background: #fff; border-radius: 4px; padding: 8px; margin-bottom: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border-left: 3px solid var(--gold); font-size: 0.7rem; }
         .lead-name { font-weight: 700; color: #333; display: block; margin-bottom: 2px; }
-        .lead-info { color: #777; font-size: 0.65rem; }
         .tag { display: inline-block; padding: 2px 5px; border-radius: 3px; font-size: 0.55rem; margin-top: 4px; font-weight: 600; }
-        .tag.buy { background: rgba(188, 101, 222, 0.15); color: var(--magenta); }
-        .tag.rent { background: rgba(223, 214, 181, 0.3); color: #998a5e; }
         .donut-chart-wrapper { display: flex; align-items: center; justify-content: space-around; height: 140px; }
         .donut { width: 90px; height: 90px; border-radius: 50%; background: conic-gradient(var(--magenta) 0deg 160deg, var(--gold) 160deg 260deg, #e0e0e0 260deg 320deg, #c0c0c0 320deg 360deg); display: flex; align-items: center; justify-content: center; position: relative; }
         .donut::after { content: ''; position: absolute; width: 55px; height: 55px; border-radius: 50%; background: #fff; }
@@ -173,7 +147,7 @@
         .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: #555; font-weight: 600; }
         .color-box { width: 10px; height: 10px; border-radius: 2px; }
 
-        /* --- BOT SIMULATION & CRM FIELDS --- */
+        /* --- BOT & CRM --- */
         .chat-bubble { padding: 12px; border-radius: 12px; margin-bottom: 10px; font-size: 0.85rem; max-width: 90%; }
         .bot-bubble { background: #f1f1f1; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
         .user-bubble { background: var(--magenta); color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 2px; }
@@ -182,15 +156,80 @@
         .crm-field-label { font-size: 0.6rem; text-transform: uppercase; color: #888; font-weight: 700; }
         .crm-field-value { font-size: 0.8rem; font-weight: 700; color: #27c93f; }
 
+        /* =========================================
+           REDISEÑO MOBILE (Media Queries)
+           ========================================= */
         @media (max-width: 1024px) {
-            .case-intro, .content-grid, .steps-grid { grid-template-columns: 1fr; }
+            /* Generales */
+            .container { padding: 0 15px; }
+            .hero-cases h1 { font-size: 1.7rem; padding: 0 10px; }
+            .case-intro { grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+            .case-intro h2 { font-size: 2rem; text-align: center; }
+            .case-intro p { text-align: center; font-size: 1rem; }
+            .case-badge { display: block; width: fit-content; margin: 0 auto 15px; }
+            .info-card { padding: 25px; }
+            .content-grid { grid-template-columns: 1fr; gap: 30px; }
             .content-grid.reverse { direction: ltr; }
-            .case-intro { text-align: center; }
-            .hero-cases h1 { font-size: 1.8rem; }
-            .video-wrapper.vertical { max-width: 100%; }
-            .metrics-row { grid-template-columns: 1fr; gap: 10px; }
-            .chart-container { margin-bottom: 20px; }
-            .pipeline-column { min-width: 140px; }
+
+            /* SWIPE: Roadmap / Estrategia */
+            .roadmap-container { padding: 40px 0; border-radius: 20px; overflow: hidden; }
+            .steps-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding: 0 20px 20px;
+                scrollbar-width: none; /* Firefox */
+            }
+            .steps-grid::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+            .step-card {
+                min-width: 82%; /* Visual cue: muestra parte de la siguiente */
+                scroll-snap-align: center;
+                padding: 35px 25px;
+            }
+
+            /* SWIPE: Métricas Dashboard */
+            .metrics-row {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 12px;
+                padding-bottom: 15px;
+                scrollbar-width: none;
+            }
+            .metrics-row::-webkit-scrollbar { display: none; }
+            .metric-box {
+                min-width: 65%;
+                scroll-snap-align: center;
+            }
+
+            /* Dashboards y Gráficos */
+            .dashboard-mockup { margin: 0 -5px; }
+            .mockup-body { padding: 15px; }
+            .donut-chart-wrapper { flex-direction: column; height: auto; gap: 20px; }
+            .donut { margin: 0 auto; }
+            .chart-legend { width: 100%; }
+
+            /* Videos y Listas */
+            .video-wrapper.vertical { max-width: 280px; }
+            .smart-list li { font-size: 0.9rem; align-items: flex-start; }
+            .smart-list li i { margin-top: 3px; }
+
+            /* Conclusión y Botones */
+            .conclusion-box { padding: 35px 20px; border-radius: 20px; }
+            .conclusion-box p { font-size: 1rem; }
+            .btn-cta-cases { 
+                width: 100%; 
+                font-size: 1rem; 
+                padding: 20px 25px; 
+                max-width: none;
+            }
+            
+            /* Indicador Visual de Deslizamiento (Opcional: Sombra al final) */
+            .steps-grid::after, .metrics-row::after {
+                content: '';
+                min-width: 20px;
+            }
         }
     </style>
 </head>
@@ -198,7 +237,7 @@
 
     <div class="container">
         <header>
-            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            <a href="index.html" class="back-link" onclick="trackButtonClick('Back_Home')"><i class="fa-solid fa-arrow-left"></i> Volver</a>
             <div class="logo-small">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/648WK3qUUy8DeS9NGDVH/media/2ab0c314-516c-4f26-8ad8-e35db41baf1b.png" alt="bi.lab">
             </div>
@@ -211,8 +250,8 @@
 
         <nav class="cases-nav">
             <a href="#ana" class="nav-item active">Ana Arbarello</a>
-            <a href="#defranco" class="nav-item">De Franco Propiedades</a>
-            <a href="#urbano" class="nav-item">Urbano Inmobiliaria</a>
+            <a href="#defranco" class="nav-item">De Franco</a>
+            <a href="#urbano" class="nav-item">Urbano</a>
         </nav>
 
         <section id="ana" class="case-study-wrapper">
@@ -220,34 +259,34 @@
                 <div>
                     <span class="case-badge">Agente Remax</span>
                     <h2>Caso Ana Arbarello</h2>
-                    <p style="font-size: 1.2rem; opacity: 0.9; line-height: 1.6;">De llamadas en frío y una agenda agotada, a un sistema de <b>captación estratégica</b> basado en la empatía humana.</p>
+                    <p>De llamadas en frío y una agenda agotada, a un sistema de <b>captación estratégica</b> basado en la empatía humana.</p>
                 </div>
                 <div class="info-card">
                     <h3><i class="fa-solid fa-circle-exclamation"></i> El Problema</h3>
-                    <p>Ana tenía su base de datos estancada y no recibía consultas por portales. Dependía de referidos ajenos, perdiendo el control sobre su flujo de captación y ventas.</p>
+                    <p>Ana tenía su base de datos estancada y no recibía consultas por portales. Dependía de referidos ajenos, perdiendo el control sobre su flujo de captación.</p>
                 </div>
             </div>
+
             <div class="roadmap-container">
                 <div class="roadmap-title">La Estrategia bi.lab</div>
                 <div class="steps-grid">
-                    <div class="step-card"><div class="step-number">01</div><h4>Análisis de Actividad</h4><p>Trackeamos su historial: el <b>84%</b> de sus ventas eran mujeres +50 años buscando una vida más sencilla.</p></div>
-                    <div class="step-card"><div class="step-number">02</div><h4>Nicho Humano</h4><p>Dejamos de vender casas para vender <b>"cambios de vida"</b>. Conectamos con el miedo al cambio y la necesidad de escucha.</p></div>
+                    <div class="step-card"><div class="step-number">01</div><h4>Análisis de Actividad</h4><p>Trackeamos su historial: el 84% de sus ventas eran mujeres +50 años buscando seguridad emocional.</p></div>
+                    <div class="step-card"><div class="step-number">02</div><h4>Nicho Humano</h4><p>Dejamos de vender casas para vender <b>"cambios de vida"</b>. Conectamos con miedos y necesidades reales.</p></div>
                     <div class="step-card"><div class="step-number">03</div><h4>Filtro Inteligente</h4><p>Instalamos un sistema en CRM que clasifica leads automáticamente, descartando curiosos.</p></div>
                 </div>
             </div>
+
             <div class="content-section">
-                <div class="section-header"><h3>Captación de propiedades: basada en los dolores del público de Ana</h3></div>
+                <div class="section-header"><h3>Captación basada en dolores del público</h3></div>
                 <div class="content-grid">
                     <div class="content-text">
-                        <p>Descubrimos que su público no miraba la rentabilidad financiera, sino la <b>seguridad</b> de que la operación no iba a fallar y <b>quedarse en su barrio</b>, sin perder estatus.</p>
-                        <p>Ana empatizaba naturalmente con ellas, pero su comunicación era genérica. Cambiamos el mensaje por uno que refleje los <b>deseos y dolores</b> de mujeres divorciadas, solteras o viudas.</p>
-                        <p>El resultado de hablarle solo a quien importa fue la captación de dos unidades de <b>+450.000 USD</b> durante el primer mes.</p>
-                        <div class="insight-box"><p><b>Por qué obtuvimos este resultado:</b> Porque esas mujeres querían cambiar de vida y Ana no les vendió su casa. <b>Les trajo una solución.</b></p></div>
+                        <p>Descubrimos que su público buscaba la <b>seguridad</b> de que la operación no fallaría y <b>quedarse en su barrio</b>. Ana empatizaba naturalmente con ellas, pero su comunicación era genérica.</p>
+                        <p>Cambiamos el mensaje genérico por uno que refleje los <b>deseos y dolores</b> de mujeres divorciadas, solteras o viudas. El resultado: captación de dos unidades de <b>+450.000 USD</b> el primer mes.</p>
+                        <div class="insight-box"><p><b>Insight:</b> Ana no les vendió su casa. Les trajo una solución para un cambio de vida.</p></div>
                         <ul class="smart-list">
                             <li><i class="fa-solid fa-venus"></i> Enfoque en Mujeres divorciadas, viudas, solteras.</li>
                             <li><i class="fa-solid fa-ear-listen"></i> Mensaje de Escucha Activa.</li>
                             <li><i class="fa-solid fa-user-tie"></i> Seguimiento profesional de Ana en cada caso.</li>
-                            <li><i class="fa-solid fa-trophy"></i> Resultado: captación de <b>propiedades grandes</b> en Zona Norte.</li>
                         </ul>
                     </div>
                     <div class="video-wrapper vertical">
@@ -255,6 +294,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="content-section" style="margin-top: 100px;">
                 <div class="section-header"><h3>Venta de Propiedades con Anuncios</h3></div>
                 <div class="content-grid">
@@ -262,10 +302,8 @@
                         <iframe src="https://player.vimeo.com/video/1148515376?badge=0&amp;autopause=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                     </div>
                     <div class="content-text">
-                        <p>Para la venta de propiedades el enfoque es similar, solo que el <b>público objetivo</b> es quién puede comprar la propiedad y no el público de Ana.</p>
-                        <p>En este caso se trataba de un departamento en construcción. ¿Cuál es el dolor del cliente final? <b>No saber cómo quedará el departamento</b>.</p>
-                        <p>Para trabajar esta objeción, usamos <b>IA para animar renders</b> de edificios en construcción. Logramos que el prospecto visualizara su futuro hogar terminado, eliminando la incertidumbre de la preventa.</p>
-                        <p>Sumamos nuestro sistema de <b>clasificación y seguimiento de leads</b> que Ana utilizó a la perfección, logrando la venta en el tiempo que se propuso.</p>
+                        <p>Para la venta el enfoque es similar, solo que el <b>público objetivo</b> es quién puede comprar y no el público de Ana.</p>
+                        <p>Usamos <b>IA para animar renders</b> de edificios en construcción, eliminando la incertidumbre de la preventa. Sumamos nuestro sistema de seguimiento y Ana logró la venta en 45 días.</p>
                         <ul class="smart-list">
                             <li><i class="fa-solid fa-filter"></i> Filtrado automático de curiosos.</li>
                             <li><i class="fa-solid fa-clock"></i> Seguimiento 24/7 programado.</li>
@@ -274,239 +312,103 @@
                     </div>
                 </div>
             </div>
+
             <div class="conclusion-box">
                 <h4>Conclusión del Caso</h4>
-                <p>El éxito de Ana demuestra que en el sector inmobiliario <b>quien intenta hablarle a todos, no le habla a nadie</b>. Al identificar un público con el que ella empatiza humanamente y respaldarlo con un sistema inteligente de filtrado, Ana recuperó su agenda y multiplicó sus resultados.</p>
+                <p>Ana recuperó su agenda y multiplicó sus resultados. Hoy no solo vende propiedades, lidera un proceso de cambio para su comunidad.</p>
                 <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_Ana')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
 
         <section id="defranco" class="case-study-wrapper">
             <div class="case-intro">
-                <div>
-                    <span class="case-badge">Inmobiliaria Líder</span>
-                    <h2>Caso De Franco Propiedades</h2>
-                    <p style="font-size: 1.2rem; opacity: 0.9; line-height: 1.6;">De un sistema de asignación manual y costos crecientes, a una <b>centralización tecnológica total</b> con un flujo predecible de +200 leads semanales.</p>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-layer-group"></i> El Contexto</h3>
-                    <p>Una estructura líder con +15 agentes enfrentaba un sistema ineficiente: los leads de portales descendían, los costos de publicidad aumentaban y la asignación manual generaba demoras y pérdida de oportunidades.</p>
-                </div>
+                <div><span class="case-badge">Inmobiliaria Líder</span><h2>Caso De Franco Propiedades</h2><p>Centralización omnicanal y asignación inteligente para +15 agentes.</p></div>
+                <div class="info-card"><h3><i class="fa-solid fa-layer-group"></i> El Contexto</h3><p>Ineficiencia en derivación de leads y costos crecientes en portales. Muchos prospectos se perdían por falta de control.</p></div>
             </div>
 
             <div class="roadmap-container">
                 <div class="roadmap-title">La Estrategia bi.lab</div>
                 <div class="steps-grid">
-                    <div class="step-card"><div class="step-number">01</div><h4>Centralización Omnicanal</h4><p>Unificamos el 100% de los leads (ZonaProp, Argenprop, Redes Sociales) en un solo CRM, eliminando la dispersión de información.</p></div>
-                    <div class="step-card"><div class="step-number">02</div><h4>Derivación Inteligente</h4><p>Automatizamos la asignación en tiempo real con reglas de negocio: captador, dueño del contacto u operación particular.</p></div>
-                    <div class="step-card"><div class="step-number">03</div><h4>Control en Tiempo Real</h4><p>Implementamos tableros de control para visualizar el rendimiento exacto de cada canal publicitario y cada agente.</p></div>
+                    <div class="step-card"><div class="step-number">01</div><h4>Centralización Omnicanal</h4><p>Unificamos el 100% de los leads (Portales y Redes) en un solo CRM unificado.</p></div>
+                    <div class="step-card"><div class="step-number">02</div><h4>Derivación Inteligente</h4><p>Automatizamos la asignación en tiempo real según criterios: captador, dueño del contacto u operación particular.</p></div>
+                    <div class="step-card"><div class="step-number">03</div><h4>Control Real</h4><p>Implementamos tableros para visualizar el rendimiento exacto de cada canal y agente.</p></div>
                 </div>
             </div>
 
             <div class="content-section">
-                <div class="section-header"><h3>Volumen Predecible y Asignación Automática</h3></div>
+                <div class="section-header"><h3>Volumen Predecible y Control Total</h3></div>
                 <div class="content-grid">
                     <div class="dashboard-mockup">
-                        <div class="mockup-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><span class="mockup-title">bi.lab | Dashboard de Control</span></div>
+                        <div class="mockup-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><span class="mockup-title">Dashboard bi.lab</span></div>
                         <div class="mockup-body">
                             <div class="metrics-row">
-                                <div class="metric-box"><span class="m-label">Consultas Compra</span><span class="m-value">210</span><span class="m-sub">Promedio Semanal</span></div>
-                                <div class="metric-box"><span class="m-label">Total Consultas</span><span class="m-value">1.066</span><span class="m-sub">Período Actual</span></div>
-                                <div class="metric-box"><span class="m-label">Pauta Redes</span><span class="m-value">532</span><span class="m-sub">Leads Calificados</span></div>
+                                <div class="metric-box"><span class="m-label">Consultas Compra</span><span class="m-value">210</span><span class="m-sub">Semanal</span></div>
+                                <div class="metric-box"><span class="m-label">Leads Redes</span><span class="m-value">532</span><span class="m-sub">Mensual</span></div>
+                                <div class="metric-box"><span class="m-label">Portales</span><span class="m-value">391</span><span class="m-sub">Mensual</span></div>
                             </div>
                             <div class="chart-container">
-                                <p class="chart-title">Asignación Automática por Vendedor</p>
                                 <div class="bar-chart">
                                     <div class="bar" style="height: 90%;" data-name="Laura R."><span>109</span></div>
-                                    <div class="bar" style="height: 85%;" data-name="Leandro I."><span>103</span></div>
                                     <div class="bar" style="height: 75%;" data-name="Juan C."><span>92</span></div>
-                                    <div class="bar" style="height: 68%;" data-name="Javier G."><span>84</span></div>
                                     <div class="bar" style="height: 45%;" data-name="Paula O."><span>54</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="content-text">
-                        <p>Solucionamos el problema del volumen con anuncios segmentados, superando el objetivo de 100 consultas para llegar a un promedio de <b>210 leads de compra semanales</b>.</p>
-                        <p>La clave no es solo generar, sino <b>distribuir eficientemente</b>. El sistema asigna cada lead al agente correcto en segundos, basándose en reglas predefinidas, eliminando el error humano y la demora.</p>
-                        <ul class="smart-list">
-                            <li><i class="fa-solid fa-bolt"></i> Asignación inmediata 24/7.</li>
-                            <li><i class="fa-solid fa-users-gear"></i> Reglas de negocio personalizadas.</li>
-                            <li><i class="fa-solid fa-check-double"></i> Fin de la pérdida de leads por demora.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <div class="content-grid reverse">
-                    <div class="dashboard-mockup" style="height: 100%;">
-                        <div class="mockup-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><span class="mockup-title">CRM | Pipeline de Ventas</span></div>
-                        <div class="mockup-body" style="overflow-x: auto; padding: 15px;">
-                            <div class="pipeline-board">
-                                <div class="pipeline-column">
-                                    <div class="column-header"><span>Nuevo Lead (25)</span><i class="fa-solid fa-ellipsis"></i></div>
-                                    <div class="lead-card"><span class="lead-name">Martín G.</span><span class="lead-info">Consulta x Depto Belgrano</span><span class="tag buy">Compra</span></div>
-                                    <div class="lead-card"><span class="lead-name">Lucía P.</span><span class="lead-info">Interesada en PH Palermo</span><span class="tag buy">Compra</span></div>
-                                </div>
-                                <div class="pipeline-column">
-                                    <div class="column-header"><span>Contactado (42)</span><i class="fa-solid fa-ellipsis"></i></div>
-                                    <div class="lead-card" style="border-color: #27c93f;"><span class="lead-name">Ana Laura S.</span><span class="lead-info">Respondió WhatsApp.</span><span class="tag buy">Compra</span></div>
-                                </div>
-                                <div class="pipeline-column">
-                                    <div class="column-header"><span>Visita Agendada (18)</span><i class="fa-solid fa-ellipsis"></i></div>
-                                    <div class="lead-card" style="border-color: var(--magenta);"><span class="lead-name">Familia Ruiz</span><span class="lead-info">Visita Sáb 15hs</span><span class="tag buy">Compra</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-text">
-                        <h3>Orden y Seguimiento del Proceso Comercial</h3>
-                        <p>El caos se transforma en un <b>embudo de ventas visual y ordenado</b>. Cada prospecto que ingresa se clasifica automáticamente y avanza por etapas claras: desde "Nuevo Lead" hasta "Reserva".</p>
-                        <p>Esto permite tener una visión clara del <b>pipeline de ventas futuro</b>, asegurando que ninguna oportunidad de cierre se pierda en el olvido.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                 <div class="content-grid">
-                    <div class="dashboard-mockup">
-                        <div class="mockup-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><span class="mockup-title">bi.lab | Análisis de Origen</span></div>
-                        <div class="mockup-body">
-                             <div class="chart-container" style="height: auto;">
-                                <p class="chart-title">Origen de Leads y Rentabilidad</p>
-                                <div class="donut-chart-wrapper">
-                                    <div class="donut"></div>
-                                    <div class="chart-legend">
-                                        <div class="legend-item"><div class="color-box" style="background: var(--magenta);"></div>Ads Redes (45%)</div>
-                                        <div class="legend-item"><div class="color-box" style="background: var(--gold);"></div>ZonaProp (28%)</div>
-                                        <div class="legend-item"><div class="color-box" style="background: #e0e0e0;"></div>Otros (27%)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-text">
-                        <h3>Control Total de la Inversión</h3>
-                        <p>Frente al aumento de costos en los portales, la solución no es adivinar, es <b>medir</b>. Centralizamos todos los canales para entender exactamente de dónde proviene cada consulta y cuánto cuesta.</p>
-                        <p>Este reporte permite tomar decisiones financieras inteligentes: <b>potenciar los canales que realmente generan retorno</b> de inversión.</p>
+                        <p>Llegamos a <b>210 leads semanales</b> promedio con anuncios segmentados. El sistema asigna cada lead en segundos, eliminando el error humano.</p>
+                        <p>El caos se transformó en un <b>embudo de ventas visual</b>. Cada prospecto avanza por etapas claras: desde "Nuevo Lead" hasta "Reserva".</p>
                     </div>
                 </div>
             </div>
 
             <div class="conclusion-box">
                 <h4>Impacto en el Negocio</h4>
-                <p>La implementación de bi.lab en De Franco Propiedades transformó la incertidumbre en un <b>sistema de crecimiento predecible y escalable</b>. Al centralizar la información y automatizar procesos clave, la inmobiliaria no solo optimizó el tiempo de sus agentes, sino que recuperó el control financiero de su marketing.</p>
+                <p>La inmobiliaria recuperó el control financiero de su marketing, asegurando que cada dólar invertido tenga un seguimiento profesional.</p>
                 <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_DeFranco')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
 
         <section id="urbano" class="case-study-wrapper">
             <div class="case-intro">
-                <div>
-                    <span class="case-badge">Sistema Experto IA</span>
-                    <h2>Caso Urbano Inmobiliaria</h2>
-                    <p style="font-size: 1.2rem; opacity: 0.9; line-height: 1.6;">Optimizando el recurso humano mediante un <b>Bot de Alquileres</b> con sistema experto de Inteligencia Artificial.</p>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-clock-rotate-left"></i> El Desafío</h3>
-                    <p>En un contexto de alta demanda de alquileres en Santa Fe, el equipo perdía cientos de horas hombre calificando inquilinos manualmente. <b>Hablar con gente que no puede alquilar es perder dinero.</b></p>
-                </div>
+                <div><span class="case-badge">Sistema Experto IA</span><h2>Caso Urbano Inmobiliaria</h2><p>Bot de Alquileres con sistema experto de Inteligencia Artificial.</p></div>
+                <div class="info-card"><h3><i class="fa-solid fa-clock-rotate-left"></i> El Desafío</h3><p>En Santa Fe, el equipo perdía horas calificando inquilinos manualmente. <b>Hablar con gente que no puede alquilar es perder dinero.</b></p></div>
             </div>
 
             <div class="roadmap-container">
                 <div class="roadmap-title">La Estrategia bi.lab para Urbano</div>
                 <div class="steps-grid">
-                    <div class="step-card"><div class="step-number">01</div><h4>Modelado IA</h4><p>Conectamos un sistema experto montado en ChatGPT con un modelo único diseñado para Urbano.</p></div>
-                    <div class="step-card"><div class="step-number">02</div><h4>Filtro Automático</h4><p>El bot detecta en tiempo real si el interesado cumple con requisitos (sueldo, garantías) antes de derivarlo.</p></div>
-                    <div class="step-card"><div class="step-number">03</div><h4>Atención Calificada</h4><p>El equipo comercial de Urbano ahora solo dedica tiempo a atender inquilinos que ya están pre-aprobados.</p></div>
+                    <div class="step-card"><div class="step-number">01</div><h4>Modelado IA</h4><p>Conectamos un sistema experto montado en ChatGPT con un modelo único para Urbano.</p></div>
+                    <div class="step-card"><div class="step-number">02</div><h4>Filtro Automático</h4><p>El bot detecta en tiempo real si el interesado cumple con requisitos (sueldo, garantías).</p></div>
+                    <div class="step-card"><div class="step-number">03</div><h4>Atención Calificada</h4><p>El equipo comercial ahora solo atiende inquilinos que ya están pre-aprobados.</p></div>
                 </div>
             </div>
 
             <div class="content-section">
-                <div class="section-header"><h3>Filtro Inteligente: Ahorro de Horas Hombre</h3></div>
+                <div class="section-header"><h3>Filtro Inteligente y Captura CRM</h3></div>
                 <div class="content-grid">
                     <div class="dashboard-mockup" style="background: #fff;">
                         <div class="mockup-header" style="background: #f8f8f8;"><span class="mockup-title" style="color:var(--magenta)">Chat GPT Asistente Urbano</span></div>
                         <div class="mockup-body chat-container-inner">
-                            <div class="chat-bubble bot-bubble">¡Hola! Para avanzar con el departamento, ¿contás con recibo de sueldo propio que duplique el valor del alquiler?</div>
-                            <div class="chat-bubble user-bubble">Sí, tengo recibo de sueldo de la administración pública.</div>
-                            <div class="chat-bubble bot-bubble">Excelente. Tu perfil está pre-calificado. ¿Tenés garantía propietaria o seguro de caución?</div>
+                            <div class="chat-bubble bot-bubble">¡Hola! Para avanzar, ¿contás con recibo de sueldo propio que duplique el alquiler?</div>
+                            <div class="chat-bubble user-bubble">Sí, tengo recibo de sueldo público.</div>
+                            <div class="chat-bubble bot-bubble">Excelente. Perfil pre-calificado. ¿Tenés garantía propietaria o seguro?</div>
                         </div>
                     </div>
-                    <div class="content-text">
-                        <p>Diseñamos un bot capaz de mantener conversaciones naturales que no solo responde, sino que <b>ejecuta preguntas de filtro críticas</b>.</p>
-                        <p>Urbano sigue captando y vendiendo, mientras el bot absorbe el volumen masivo de consultas por rentas, eliminando el ruido y enfocando al equipo solo en lo que es <b>rentable</b>.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <div class="content-grid reverse">
                     <div class="dashboard-mockup">
-                        <div class="mockup-header"><span class="mockup-title">Ficha de Contacto | Campos Personalizados</span></div>
+                        <div class="mockup-header"><span class="mockup-title">Ficha de Contacto | Datos IA</span></div>
                         <div class="mockup-body">
-                            <p style="font-size: 0.7rem; color: #666; margin-bottom: 15px;">La IA traduce la charla en datos estructurados:</p>
-                            <div class="crm-field">
-                                <span class="crm-field-label">Recibo de Sueldo</span>
-                                <span class="crm-field-value"><i class="fa-solid fa-circle-check"></i> SÍ POSEE</span>
-                            </div>
-                            <div class="crm-field">
-                                <span class="crm-field-label">Tipo de Garantía</span>
-                                <span class="crm-field-value" style="color:var(--violet)">Seguro Caución</span>
-                            </div>
-                            <div class="crm-field">
-                                <span class="crm-field-label">Estado Calificación</span>
-                                <span class="crm-field-value">Pre-aprobado</span>
-                            </div>
+                            <div class="crm-field"><span class="crm-field-label">Recibo de Sueldo</span><span class="crm-field-value"><i class="fa-solid fa-circle-check"></i> SÍ POSEE</span></div>
+                            <div class="crm-field"><span class="crm-field-label">Garantía</span><span class="crm-field-value">Seguro Caución</span></div>
+                            <div class="crm-field"><span class="crm-field-label">Estado</span><span class="crm-field-value">Pre-aprobado</span></div>
                         </div>
-                    </div>
-                    <div class="content-text">
-                        <h3>Integración Total: De la Charla al Dato</h3>
-                        <p>Toda la información recolectada por el bot no queda en el aire. El sistema detecta la respuesta y <b>mapea el dato directamente al CRM</b> en campos personalizados.</p>
-                        <p>Esto permite que el equipo de alquileres visualice el perfil del inquilino antes de siquiera levantar el teléfono.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <div class="section-header"><h3>El Proceso Comercial de Alquileres</h3></div>
-                <div class="content-grid">
-                    <div class="dashboard-mockup">
-                        <div class="mockup-header"><span class="mockup-title">CRM | Pipeline Alquileres</span></div>
-                        <div class="mockup-body">
-                            <div class="pipeline-board">
-                                <div class="pipeline-column">
-                                    <div class="column-header"><span>Entrante (Bot)</span></div>
-                                    <div class="lead-card"><span class="lead-name">Julieta M.</span><span class="lead-info">Dpto 2 dorm.</span></div>
-                                    <div class="lead-card"><span class="lead-name">Lucas T.</span><span class="lead-info">Casa Barrio Sur</span></div>
-                                </div>
-                                <div class="pipeline-column" style="background: rgba(39, 201, 63, 0.08);">
-                                    <div class="column-header"><span style="color:#27c93f;">Pre-calificado (IA)</span></div>
-                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Sofía B.</span><span class="tag buy" style="background:#e8f5e9; color:#2e7d32;">REQUISITOS OK</span></div>
-                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Andrés P.</span><span class="tag buy" style="background:#e8f5e9; color:#2e7d32;">REQUISITOS OK</span></div>
-                                </div>
-                                <div class="pipeline-column">
-                                    <div class="column-header"><span>Cita Agendada</span></div>
-                                    <div class="lead-card" style="border-left-color: var(--magenta);"><span class="lead-name">Familia Sosa</span><span class="tag rent">VISITA SÁBADO</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-text">
-                        <p>El equipo comercial ahora solo dedica tiempo a la columna de <b>"Pre-calificados"</b>. Han eliminado el ruido de prospectos que no cumplen condiciones, logrando un proceso de alquiler mucho más ágil y rentable.</p>
-                        <ul class="smart-list">
-                            <li><i class="fa-solid fa-robot"></i> Chat GPT integrado 24/7.</li>
-                            <li><i class="fa-solid fa-user-shield"></i> Filtrado de requisitos automático.</li>
-                            <li><i class="fa-solid fa-arrow-up-right-dots"></i> Incremento masivo en la productividad.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
 
             <div class="conclusion-box">
                 <h4>Conclusión Urbano</h4>
-                <p>Urbano Inmobiliaria entendió que la tecnología es el mejor aliado del tiempo humano. Al automatizar la calificación de inquilinos con un bot experto, lograron absorber una demanda masiva sin colapsar su equipo, permitiéndoles escalar tanto en rentas como en ventas de forma simultánea.</p>
+                <p>Automatizar la calificación permitió absorber una demanda masiva sin colapsar al equipo humano.</p>
                 <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_Urbano')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
