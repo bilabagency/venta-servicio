@@ -35,11 +35,11 @@
         }
         .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; }
 
-        /* --- BOTÓN CTA PREMIUM --- */
+        /* --- BOTÓN CTA PREMIUM (Llamativo y Grande) --- */
         .btn-cta-cases {
             background-color: var(--gold);
             color: var(--bg-dark);
-            padding: 22px 40px;
+            padding: 25px 50px;
             border-radius: 16px;
             font-family: var(--font-title);
             font-weight: 700;
@@ -48,27 +48,53 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(223, 214, 181, 0.2);
             border: none;
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             position: relative;
             text-transform: uppercase;
             overflow: hidden;
             cursor: pointer;
-            margin: 50px auto 0;
+            margin: 40px auto 0;
             display: flex;
         }
-        .btn-cta-cases::before { content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 4s infinite; }
-        @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
+
+        /* Efecto Shimmer (Brillo) */
+        .btn-cta-cases::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+
         .btn-cta-cases { animation: pulse-shadow 3s infinite; }
-        @keyframes pulse-shadow { 0%, 100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); } 50% { box-shadow: 0 10px 45px rgba(223, 214, 181, 0.5); transform: scale(1.02); } }
+
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
+            50% { box-shadow: 0 10px 45px rgba(223, 214, 181, 0.5); transform: scale(1.02); }
+            100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
+        }
+
+        .btn-cta-cases:hover {
+            background-color: #fff;
+            transform: translateY(-5px) scale(1.05);
+        }
 
         /* --- HEADER & HERO --- */
         header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
         .back-link { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .back-link:hover { color: #fff; transform: translateX(-5px); }
         .logo-small img { height: 30px; }
         .hero-cases { padding: 40px 0 60px; text-align: center; }
         .pre-title { color: var(--magenta); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 20px; display: block; }
@@ -89,7 +115,6 @@
         .roadmap-title { text-align: center; margin-bottom: 50px; color: var(--magenta); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
         .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .step-card { background: rgba(10, 10, 12, 0.4); padding: 40px 25px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); position: relative; overflow: hidden; transition: 0.3s; }
-        .step-card:hover { border-color: var(--gold); }
         .step-number { position: absolute; top: 15px; right: 20px; font-size: 4rem; font-weight: 800; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.25; line-height: 1; }
         .step-card h4 { font-family: var(--font-title); color: var(--gold); font-size: 1.15rem; margin-bottom: 12px; position: relative; z-index: 2; }
         .step-card p { font-size: 0.85rem; opacity: 0.8; line-height: 1.5; position: relative; z-index: 2; }
@@ -157,55 +182,15 @@
         .crm-field-label { font-size: 0.6rem; text-transform: uppercase; color: #888; font-weight: 700; }
         .crm-field-value { font-size: 0.8rem; font-weight: 700; color: #27c93f; }
 
-        /* =========================================
-           REDISEÑO MOBILE SWIPE & RESPONSIVE
-           ========================================= */
         @media (max-width: 1024px) {
-            .case-intro { grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
-            .case-intro h2 { font-size: 2rem; text-align: center; }
-            .case-intro p { text-align: center; }
-            .case-badge { display: block; width: fit-content; margin: 0 auto 15px; }
-            .content-grid { grid-template-columns: 1fr; gap: 30px; }
+            .case-intro, .content-grid, .steps-grid { grid-template-columns: 1fr; }
             .content-grid.reverse { direction: ltr; }
-
-            /* Efecto Swipe en Roadmap */
-            .roadmap-container { padding: 40px 0; border-radius: 20px; overflow: hidden; }
-            .steps-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 15px;
-                padding: 0 20px 20px;
-                scrollbar-width: none;
-            }
-            .steps-grid::-webkit-scrollbar { display: none; }
-            .step-card {
-                min-width: 85%; /* Visual cue: asoma la siguiente */
-                scroll-snap-align: center;
-                padding: 35px 25px;
-            }
-
-            /* Efecto Swipe en Métricas Dashboard */
-            .metrics-row {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 12px;
-                padding-bottom: 15px;
-                scrollbar-width: none;
-            }
-            .metrics-row::-webkit-scrollbar { display: none; }
-            .metric-box {
-                min-width: 65%;
-                scroll-snap-align: center;
-            }
-
-            .dashboard-mockup { margin: 0 -5px; }
-            .donut-chart-wrapper { flex-direction: column; height: auto; gap: 20px; }
-            .donut { margin: 0 auto; }
-            .chart-legend { width: 100%; }
-            .video-wrapper.vertical { max-width: 280px; }
-            .btn-cta-cases { width: 100%; font-size: 1rem; padding: 20px 25px; }
+            .case-intro { text-align: center; }
+            .hero-cases h1 { font-size: 1.8rem; }
+            .video-wrapper.vertical { max-width: 100%; }
+            .metrics-row { grid-template-columns: 1fr; gap: 10px; }
+            .chart-container { margin-bottom: 20px; }
+            .pipeline-column { min-width: 140px; }
         }
     </style>
 </head>
@@ -292,7 +277,7 @@
             <div class="conclusion-box">
                 <h4>Conclusión del Caso</h4>
                 <p>El éxito de Ana demuestra que en el sector inmobiliario <b>quien intenta hablarle a todos, no le habla a nadie</b>. Al identificar un público con el que ella empatiza humanamente y respaldarlo con un sistema inteligente de filtrado, Ana recuperó su agenda y multiplicó sus resultados.</p>
-                <a href="index.html#booking" class="btn-cta-cases">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
+                <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_Ana')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
 
@@ -308,6 +293,7 @@
                     <p>Una estructura líder con +15 agentes enfrentaba un sistema ineficiente: los leads de portales descendían, los costos de publicidad aumentaban y la asignación manual generaba demoras y pérdida de oportunidades.</p>
                 </div>
             </div>
+
             <div class="roadmap-container">
                 <div class="roadmap-title">La Estrategia bi.lab</div>
                 <div class="steps-grid">
@@ -316,6 +302,7 @@
                     <div class="step-card"><div class="step-number">03</div><h4>Control en Tiempo Real</h4><p>Implementamos tableros de control para visualizar el rendimiento exacto de cada canal publicitario y cada agente.</p></div>
                 </div>
             </div>
+
             <div class="content-section">
                 <div class="section-header"><h3>Volumen Predecible y Asignación Automática</h3></div>
                 <div class="content-grid">
@@ -342,9 +329,15 @@
                     <div class="content-text">
                         <p>Solucionamos el problema del volumen con anuncios segmentados, superando el objetivo de 100 consultas para llegar a un promedio de <b>210 leads de compra semanales</b>.</p>
                         <p>La clave no es solo generar, sino <b>distribuir eficientemente</b>. El sistema asigna cada lead al agente correcto en segundos, basándose en reglas predefinidas, eliminando el error humano y la demora.</p>
+                        <ul class="smart-list">
+                            <li><i class="fa-solid fa-bolt"></i> Asignación inmediata 24/7.</li>
+                            <li><i class="fa-solid fa-users-gear"></i> Reglas de negocio personalizadas.</li>
+                            <li><i class="fa-solid fa-check-double"></i> Fin de la pérdida de leads por demora.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
             <div class="content-section">
                 <div class="content-grid reverse">
                     <div class="dashboard-mockup" style="height: 100%;">
@@ -374,10 +367,37 @@
                     </div>
                 </div>
             </div>
+
+            <div class="content-section">
+                 <div class="content-grid">
+                    <div class="dashboard-mockup">
+                        <div class="mockup-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><span class="mockup-title">bi.lab | Análisis de Origen</span></div>
+                        <div class="mockup-body">
+                             <div class="chart-container" style="height: auto;">
+                                <p class="chart-title">Origen de Leads y Rentabilidad</p>
+                                <div class="donut-chart-wrapper">
+                                    <div class="donut"></div>
+                                    <div class="chart-legend">
+                                        <div class="legend-item"><div class="color-box" style="background: var(--magenta);"></div>Ads Redes (45%)</div>
+                                        <div class="legend-item"><div class="color-box" style="background: var(--gold);"></div>ZonaProp (28%)</div>
+                                        <div class="legend-item"><div class="color-box" style="background: #e0e0e0;"></div>Otros (27%)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-text">
+                        <h3>Control Total de la Inversión</h3>
+                        <p>Frente al aumento de costos en los portales, la solución no es adivinar, es <b>medir</b>. Centralizamos todos los canales para entender exactamente de dónde proviene cada consulta y cuánto cuesta.</p>
+                        <p>Este reporte permite tomar decisiones financieras inteligentes: <b>potenciar los canales que realmente generan retorno</b> de inversión.</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="conclusion-box">
                 <h4>Impacto en el Negocio</h4>
                 <p>La implementación de bi.lab en De Franco Propiedades transformó la incertidumbre en un <b>sistema de crecimiento predecible y escalable</b>. Al centralizar la información y automatizar procesos clave, la inmobiliaria no solo optimizó el tiempo de sus agentes, sino que recuperó el control financiero de su marketing.</p>
-                <a href="index.html#booking" class="btn-cta-cases">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
+                <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_DeFranco')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
 
@@ -398,7 +418,7 @@
                 <div class="roadmap-title">La Estrategia bi.lab para Urbano</div>
                 <div class="steps-grid">
                     <div class="step-card"><div class="step-number">01</div><h4>Modelado IA</h4><p>Conectamos un sistema experto montado en ChatGPT con un modelo único diseñado para Urbano.</p></div>
-                    <div class="step-card"><div class="step-number">02</div><h4>Filtro Automático</h4><p>El bot detecta en tiempo real si el interesado cumple con requisitos antes de derivarlo al equipo.</p></div>
+                    <div class="step-card"><div class="step-number">02</div><h4>Filtro Automático</h4><p>El bot detecta en tiempo real si el interesado cumple con requisitos (sueldo, garantías) antes de derivarlo.</p></div>
                     <div class="step-card"><div class="step-number">03</div><h4>Atención Calificada</h4><p>El equipo comercial de Urbano ahora solo dedica tiempo a atender inquilinos que ya están pre-aprobados.</p></div>
                 </div>
             </div>
@@ -409,14 +429,14 @@
                     <div class="dashboard-mockup" style="background: #fff;">
                         <div class="mockup-header" style="background: #f8f8f8;"><span class="mockup-title" style="color:var(--magenta)">Chat GPT Asistente Urbano</span></div>
                         <div class="mockup-body chat-container-inner">
-                            <div class="chat-bubble bot-bubble">¡Hola! Para avanzar con el departamento en Santa Fe, ¿contás con recibo de sueldo propio que duplique el valor del alquiler?</div>
+                            <div class="chat-bubble bot-bubble">¡Hola! Para avanzar con el departamento, ¿contás con recibo de sueldo propio que duplique el valor del alquiler?</div>
                             <div class="chat-bubble user-bubble">Sí, tengo recibo de sueldo de la administración pública.</div>
                             <div class="chat-bubble bot-bubble">Excelente. Tu perfil está pre-calificado. ¿Tenés garantía propietaria o seguro de caución?</div>
                         </div>
                     </div>
                     <div class="content-text">
                         <p>Diseñamos un bot capaz de mantener conversaciones naturales que no solo responde, sino que <b>ejecuta preguntas de filtro críticas</b>.</p>
-                        <p>Urbano sigue captando y vendiendo, mientras el bot absorbe el volumen masivo de consultas por rentas, enfocando al equipo solo en lo que es <b>rentable</b>.</p>
+                        <p>Urbano sigue captando y vendiendo, mientras el bot absorbe el volumen masivo de consultas por rentas, eliminando el ruido y enfocando al equipo solo en lo que es <b>rentable</b>.</p>
                     </div>
                 </div>
             </div>
@@ -424,7 +444,7 @@
             <div class="content-section">
                 <div class="content-grid reverse">
                     <div class="dashboard-mockup">
-                        <div class="mockup-header"><span class="mockup-title">Ficha de Contacto | Datos IA</span></div>
+                        <div class="mockup-header"><span class="mockup-title">Ficha de Contacto | Campos Personalizados</span></div>
                         <div class="mockup-body">
                             <p style="font-size: 0.7rem; color: #666; margin-bottom: 15px;">La IA traduce la charla en datos estructurados:</p>
                             <div class="crm-field">
@@ -432,7 +452,7 @@
                                 <span class="crm-field-value"><i class="fa-solid fa-circle-check"></i> SÍ POSEE</span>
                             </div>
                             <div class="crm-field">
-                                <span class="crm-field-label">Garantía Detectada</span>
+                                <span class="crm-field-label">Tipo de Garantía</span>
                                 <span class="crm-field-value" style="color:var(--violet)">Seguro Caución</span>
                             </div>
                             <div class="crm-field">
@@ -463,22 +483,22 @@
                                 </div>
                                 <div class="pipeline-column" style="background: rgba(39, 201, 63, 0.08);">
                                     <div class="column-header"><span style="color:#27c93f;">Pre-calificado (IA)</span></div>
-                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Sofía B.</span><span class="tag apt">REQUISITOS OK</span></div>
-                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Andrés P.</span><span class="tag apt">REQUISITOS OK</span></div>
+                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Sofía B.</span><span class="tag buy" style="background:#e8f5e9; color:#2e7d32;">REQUISITOS OK</span></div>
+                                    <div class="lead-card" style="border-left-color: #27c93f;"><span class="lead-name">Andrés P.</span><span class="tag buy" style="background:#e8f5e9; color:#2e7d32;">REQUISITOS OK</span></div>
                                 </div>
                                 <div class="pipeline-column">
                                     <div class="column-header"><span>Cita Agendada</span></div>
-                                    <div class="lead-card" style="border-left-color: var(--magenta);"><span class="lead-name">Fam. Sosa</span><span class="tag rent">VISITA SÁBADO</span></div>
+                                    <div class="lead-card" style="border-left-color: var(--magenta);"><span class="lead-name">Familia Sosa</span><span class="tag rent">VISITA SÁBADO</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="content-text">
-                        <p>El equipo comercial ahora solo dedica tiempo a la columna de <b>"Pre-calificados"</b>. Han eliminado el ruido de prospectos que no cumplen condiciones.</p>
+                        <p>El equipo comercial ahora solo dedica tiempo a la columna de <b>"Pre-calificados"</b>. Han eliminado el ruido de prospectos que no cumplen condiciones, logrando un proceso de alquiler mucho más ágil y rentable.</p>
                         <ul class="smart-list">
                             <li><i class="fa-solid fa-robot"></i> Chat GPT integrado 24/7.</li>
                             <li><i class="fa-solid fa-user-shield"></i> Filtrado de requisitos automático.</li>
-                            <li><i class="fa-solid fa-arrow-up-right-dots"></i> Incremento en la productividad del equipo.</li>
+                            <li><i class="fa-solid fa-arrow-up-right-dots"></i> Incremento masivo en la productividad.</li>
                         </ul>
                     </div>
                 </div>
@@ -486,8 +506,8 @@
 
             <div class="conclusion-box">
                 <h4>Conclusión Urbano</h4>
-                <p>Al automatizar la calificación de inquilinos con un bot experto, lograron absorber una demanda masiva sin colapsar su equipo, permitiéndoles escalar tanto en rentas como en ventas.</p>
-                <a href="index.html#booking" class="btn-cta-cases">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
+                <p>Urbano Inmobiliaria entendió que la tecnología es el mejor aliado del tiempo humano. Al automatizar la calificación de inquilinos con un bot experto, lograron absorber una demanda masiva sin colapsar su equipo, permitiéndoles escalar tanto en rentas como en ventas de forma simultánea.</p>
+                <a href="index.html#booking" class="btn-cta-cases" onclick="trackButtonClick('CTA_Caso_Urbano')">Agendar reunión con bi.lab <i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </section>
 
