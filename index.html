@@ -19,7 +19,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -30,6 +30,7 @@
             --violet: #5241B0;
             --magenta: #BC65DE;
             --cream: #FDFAF0;
+            --danger: #FF3B30;
             --font-title: 'Quicksand', sans-serif;
             --font-body: 'Archivo', sans-serif;
         }
@@ -73,63 +74,97 @@
             .container { max-width: 1350px; }
         }
 
+        /* --- ESTILO CTA "ELECTRIC NEBULA" --- */
         .btn-cta {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            padding: 22px 40px;
-            border-radius: 14px;
+            /* Dimensiones */
+            padding: 24px 48px;
+            border-radius: 50px;
+            width: 100%;
+            max-width: 480px;
+            
+            /* Tipografía */
+            color: #ffffff;
             font-family: var(--font-title);
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             text-decoration: none;
+            font-size: 1.15rem;
+            
+            /* Layout */
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2);
-            border: none;
-            width: 100%;
-            max-width: 400px;
+            gap: 12px;
             position: relative;
             z-index: 100;
-            text-transform: uppercase;
             overflow: hidden;
+
+            /* FONDO & GRADIENTE (Violeta -> Magenta -> Violeta) */
+            background: linear-gradient(90deg, var(--violet) 0%, var(--magenta) 50%, var(--violet) 100%);
+            background-size: 200% auto;
+            
+            /* Efectos de Luz */
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 30px rgba(188, 101, 222, 0.4); /* Glow Magenta suave */
+
+            /* Animación constante del fondo */
+            animation: gradient-flow 3s linear infinite;
+            transition: all 0.3s ease;
         }
 
-        .btn-cta::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg);
-            transition: 0.75s;
+        @keyframes gradient-flow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
-        @keyframes shimmer {
-            0% { left: -150%; }
-            100% { left: 150%; }
+        /* HOVER: Inversión a Blanco Brillante */
+        .btn-cta:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: #ffffff; /* Fondo blanco */
+            color: var(--violet); /* Texto violeta */
+            box-shadow: 0 0 50px rgba(188, 101, 222, 0.8), 0 0 20px rgba(255,255,255,0.5); /* Glow intenso */
+            border-color: #fff;
         }
 
-        .btn-cta { animation: pulse-shadow 3s infinite; }
-        .btn-cta::before { animation: shimmer 4s infinite; }
-
-        @keyframes pulse-shadow {
-            0% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
-            50% { box-shadow: 0 10px 40px rgba(223, 214, 181, 0.4); }
-            100% { box-shadow: 0 10px 25px rgba(223, 214, 181, 0.2); }
+        .btn-cta:active {
+            transform: translateY(-2px) scale(0.98);
         }
 
-        @media (min-width: 1024px) {
-            .btn-cta:hover {
-                transform: translateY(-6px) scale(1.03);
-                background-color: #fff;
-                box-shadow: 0 20px 50px rgba(223, 214, 181, 0.5);
-            }
-            .btn-cta:active { transform: translateY(-2px); }
+        /* Icono dentro del botón */
+        .btn-cta i {
+            transition: transform 0.3s ease;
+        }
+        .btn-cta:hover i {
+            transform: translateX(5px); /* Flecha se mueve al hacer hover */
         }
 
+        /* --- TEXTO DE URGENCIA (Consistente con el estilo) --- */
+        .urgency-text {
+            display: inline-block;
+            margin-top: 25px;
+            color: #FF6B6B; /* Rojo coral brillante */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            
+            /* Estilo "Tag" */
+            background: rgba(20, 20, 25, 0.8);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            
+            /* Animación suave de alerta */
+            animation: subtle-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.8; border-color: rgba(255, 107, 107, 0.3); }
+            50% { opacity: 1; border-color: rgba(255, 107, 107, 0.8); box-shadow: 0 0 15px rgba(255, 107, 107, 0.2); }
+        }
+
+        /* HERO Styles */
         .hero {
             padding-top: 50px;
             text-align: center;
@@ -322,9 +357,36 @@
 
         /* --- MARQUEE --- */
         .marquee-section { padding: 100px 0; text-align: center; }
-        .marquee-title { color: var(--gold); font-family: var(--font-title); font-size: 1.6rem; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
+        
+        .marquee-title { 
+            font-family: var(--font-title); 
+            font-size: 2.5rem;
+            margin-bottom: 70px; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            font-weight: 700; 
+            background: linear-gradient(90deg, var(--gold) 0%, #ffffff 50%, var(--gold) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(223, 214, 181, 0.15);
+            position: relative;
+            display: inline-block;
+        }
+
+        .marquee-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--magenta), transparent);
+        }
+
         .marquee-container { width: 100%; overflow: hidden; position: relative; }
-        .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .marquee-track { display: flex; width: max-content; animation: scroll 20s linear infinite; }
         
         .logo-card-slide {
             width: 220px; height: 110px; margin: 0 15px;
@@ -406,6 +468,7 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1847777742681154&ev=PageView&noscript=1"
     /></noscript>
+
     <canvas id="tech-canvas"></canvas>
 
     <section class="hero container">
@@ -430,7 +493,9 @@
         
         <div style="text-align: center; margin-top: 50px;">
             <a href="#booking" class="btn-cta">Agendá tu auditoría gratuita <i class="fa-solid fa-calendar-check calendar-icon"></i></a>
-            <p style="color: var(--magenta); font-weight: 600; margin-top: 25px;"><i class="fa-solid fa-fire"></i> QUEDAN SOLO 5 CUPOS ESTE MES</p>
+            <div>
+                <span class="urgency-text"><i class="fa-solid fa-triangle-exclamation"></i> Quedan solo 5 cupos este mes</span>
+            </div>
         </div>
     </section>
 
@@ -441,12 +506,35 @@
                 <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
                 <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
                 <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
+                <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
+                <div class="logo-card-slide"><img src="https://nqn3.com/galeria/fotos/2025/06/11/e_1749663063.jpg" alt="NQN3"></div>
                 <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
+                <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
                 <div class="logo-card-slide dark"><img src="https://www.zipcode.com.ar/assets/images/zipcode-logo-dark.svg" alt="Zipcode"></div>
+                <div class="logo-card-slide"><img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano"></div>
+                <div class="logo-card-slide dark"><img src="https://i.ibb.co/5hBYRB6q/Recurso-1-1.png" alt="Mauro Croce"></div>
+                <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
+                <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
+                <div class="logo-card-slide"><img src="https://i.ibb.co/zWTj2YzS/LOGO-REMAX-INVICTUS.png" alt="Remax Invictus"></div>
+                
                 <div class="logo-card-slide"><img src="https://www.somosfuturo.com.ar/images/logo-header.png" alt="Futuro"></div>
                 <div class="logo-card-slide"><img src="https://remaxcordial.com.ar/img/remax%20logo.png" alt="Cordial"></div>
                 <div class="logo-card-slide dark"><img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,h_54/https://remax-diagonal2.com.ar/wp-content/uploads/2021/02/logo-remax-diag2-menu.png" alt="Diagonal"></div>
+                <div class="logo-card-slide"><img src="https://static.tokkobroker.com/tfw_images/8635_Parodi%20Giaquinta%20Propiedades/PG_logo_BW.png" alt="Parodi"></div>
+                <div class="logo-card-slide"><img src="https://nqn3.com/galeria/fotos/2025/06/11/e_1749663063.jpg" alt="NQN3"></div>
+                <div class="logo-card-slide"><img src="https://century21.com.ar/img/c21arg/c21ArgWebRGold.svg" alt="C21"></div>
+                <div class="logo-card-slide dark"><img src="https://www.remax-chacras.com/wp-content/uploads//2023/08/logo-remax-chacras-bold.svg" alt="Chacras"></div>
+                <div class="logo-card-slide dark"><img src="https://www.zipcode.com.ar/assets/images/zipcode-logo-dark.svg" alt="Zipcode"></div>
+                <div class="logo-card-slide"><img src="https://urbano-inmobiliaria.com/web/assets/images/logo-308x73.png" alt="Urbano"></div>
+                <div class="logo-card-slide dark"><img src="https://i.ibb.co/5hBYRB6q/Recurso-1-1.png" alt="Mauro Croce"></div>
+                <div class="logo-card-slide dark"><img src="https://i.ibb.co/SXy6B28B/Logo-principal-variable01-Mesa-de-trabajo-1-1.png" alt="CODE"></div>
+                <div class="logo-card-slide"><img src="https://i.ibb.co/wFPpGKCH/LOGO-RMX-DELUXE.png" alt="Remax Deluxe"></div>
+                <div class="logo-card-slide"><img src="https://i.ibb.co/zWTj2YzS/LOGO-REMAX-INVICTUS.png" alt="Remax Invictus"></div>
             </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#booking" class="btn-cta">Quiero escalar mi inmobiliaria</a>
         </div>
     </section>
 
@@ -519,6 +607,10 @@
                 <div class="case-footer">Ver estrategia completa <i class="fa-solid fa-arrow-right"></i></div>
             </a>
         </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#booking" class="btn-cta">Quiero lograr estos resultados</a>
+        </div>
     </section>
 
     <section class="pains-section container">
@@ -529,6 +621,10 @@
             <div class="pain-card"><i class="fa-solid fa-address-book"></i> <p>Tus referidos se fueron acabando para captar propiedades.</p></div>
             <div class="pain-card"><i class="fa-solid fa-robot"></i> <p>Necesitás automatizar procesos para escalar tu negocio.</p></div>
             <div class="pain-card"><i class="fa-solid fa-database"></i> <p>Necesitás un socio tecnológico para accionar tu base de datos.</p></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#booking" class="btn-cta">Solucionar mis problemas ahora</a>
         </div>
     </section>
 
