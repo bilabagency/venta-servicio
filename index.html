@@ -462,6 +462,16 @@
 
         .calendar-icon { animation: cal-bounce 2s infinite; }
         @keyframes cal-bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* --- [FIX MOBILE] CORRECCIÓN DE ALTURA EN CELULAR --- */
+        @media (max-width: 768px) {
+            .booking-frame-container {
+                min-height: 1850px !important; /* Aumentamos altura para que entre el formulario */
+            }
+            iframe#ghl-calendar {
+                min-height: 1850px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -656,7 +666,8 @@
         <div class="booking-frame-container">
             <iframe src="https://api.leadconnectorhq.com/widget/booking/jwSHzo35JYXxP8NuaFP8" 
                     id="ghl-calendar"
-                    scrolling="no"></iframe>
+                    scrolling="yes"
+                    style="overflow-y: auto;"></iframe>
         </div>
     </section>
 
